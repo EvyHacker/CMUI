@@ -1,0 +1,2151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="4.0" jmeter="4.0 r1823414">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="PEC-9498- 855I" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="855I_MED_Verification_Business_InitialEnrollment" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1538652557000</longProp>
+        <longProp name="ThreadGroup.end_time">1536843690000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay">10</stringProp>
+        <boolProp name="ThreadGroup.delayedStart">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
+          <stringProp name="ConstantTimer.delay">1000</stringProp>
+        </ConstantTimer>
+        <hashTree/>
+        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+          <collectionProp name="Arguments.arguments">
+            <elementProp name="envt" elementType="Argument">
+              <stringProp name="Argument.name">envt</stringProp>
+              <stringProp name="Argument.value">staging</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+          </collectionProp>
+        </Arguments>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Case_Mgmt_CreateCase" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">case-management-api-${envt}.apps.pecos-staging.cpi.cmscloud.local</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">casemanagement/829bbcfc-fd1c-4572-a106-d71ccff1f04d</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response StatusCode Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49587">201</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">1</intProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">applicationId</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.applicationId</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+            <stringProp name="JSONPostProcessor.defaultValues">No_Default</stringProp>
+            <stringProp name="Scope.variable">trackingid</stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Text Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="1870512352">trackingNumber</stringProp>
+              <stringProp name="31430900">eventType</stringProp>
+              <stringProp name="-2129778896">startDate</stringProp>
+              <stringProp name="-800639515">applicationEventId</stringProp>
+              <stringProp name="-23960743">pecoseUserId</stringProp>
+              <stringProp name="598371679">createdBy</stringProp>
+              <stringProp name="951530617">content</stringProp>
+              <stringProp name="1917896816">currentEventState</stringProp>
+              <stringProp name="-1695810125">contractJurisdiction</stringProp>
+              <stringProp name="-1011352949">applicationId</stringProp>
+              <stringProp name="-2102099874">entityId</stringProp>
+              <stringProp name="-580336490">verificationId</stringProp>
+              <stringProp name="3575610">type</stringProp>
+              <stringProp name="-892481550">status</stringProp>
+              <stringProp name="-2129778896">startDate</stringProp>
+              <stringProp name="-1607727319">endDate</stringProp>
+              <stringProp name="1092481112">pecosUserId</stringProp>
+              <stringProp name="-987494927">provider</stringProp>
+              <stringProp name="-1694759682">specialty</stringProp>
+              <stringProp name="1575888299">submittalReason</stringProp>
+              <stringProp name="1930260974">providerRepresentative</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">caseId</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.trackingNumber</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+            <stringProp name="JSONPostProcessor.defaultValues">No_Default</stringProp>
+            <stringProp name="Scope.variable">trackingid</stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Applicationtype_update" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&#xd;
+&#xd;
+{&#xd;
+	&quot;form_type&quot;: &quot;855I&quot;,&#xd;
+	&quot;reason_type&quot;: &quot;INITIAL_ENROLLMENT&quot;,&#xd;
+	&quot;ownership_transaction_participant&quot;: false,&#xd;
+	&quot;optional_sections&quot;: [&quot;855I/ELECTRONICS_FUNDS_TRANSFER&quot;]&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">application-api-${envt}.apps.pecos-staging.cpi.cmscloud.local</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">initialQuestionnaire/${applicationId}</stringProp>
+          <stringProp name="HTTPSampler.method">PUT</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Status Code Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">1</intProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="App- UpdateAppMetaData" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+	&quot;entity_id&quot;: &quot;${entityId}&quot;,&#xd;
+	&quot;application_id&quot;: &quot;${applicationId}&quot;,&#xd;
+	&quot;application_data&quot;: {&#xd;
+		&quot;residency&quot;: {&#xd;
+			&quot;type&quot;: &quot;RESIDENCY&quot;,&#xd;
+			&quot;facility&quot;: {&#xd;
+				&quot;name&quot;: &quot;3RD AVE RAD AND IMAGING&quot;,&#xd;
+				&quot;address&quot;: {&#xd;
+					&quot;city&quot;: &quot;Delaware City&quot;,&#xd;
+					&quot;state&quot;: &quot;DE&quot;,&#xd;
+					&quot;country&quot;: &quot;United States&quot;,&#xd;
+					&quot;zipCode&quot;: &quot;19706&quot;,&#xd;
+					&quot;address1&quot;: &quot;21 15th Street&quot;,&#xd;
+					&quot;address2&quot;: &quot;515&quot;&#xd;
+				}&#xd;
+			},&#xd;
+			&quot;completionDate&quot;: &quot;12/31/2020&quot;,&#xd;
+			&quot;facilityPrerequisite&quot;: true,&#xd;
+			&quot;trainingCostsCovered&quot;: true,&#xd;
+			&quot;facilityPrerequisite2&quot;: true,&#xd;
+			&quot;serviceOtherFacilities&quot;: true&#xd;
+		},&#xd;
+		&quot;homeService&quot;: {&#xd;
+			&quot;performsHomeService&quot;: &quot;N&quot;&#xd;
+		},&#xd;
+		&quot;formType&quot;: &quot;855I&quot;,&#xd;
+		&quot;specialty&quot;: {&#xd;
+			&quot;type&quot;: &quot;PHYSICIAN&quot;,&#xd;
+			&quot;physician&quot;: {&#xd;
+				&quot;primaryOther&quot;: &quot;Specified Undefined Primary Specialty&quot;,&#xd;
+				&quot;secondaryOther&quot;: &quot;Specified Undefined Secondary Specialty&quot;,&#xd;
+				&quot;primarySpecialty&quot;: &quot;Undefined&quot;,&#xd;
+				&quot;secondarySpecialties&quot;: [&#xd;
+					&quot;Undefined&quot;,&#xd;
+					&quot;General practice&quot;&#xd;
+				]&#xd;
+			},&#xd;
+			&quot;nonPhysician&quot;: {&#xd;
+				&quot;other&quot;: &quot;Specified Undefined Specialty&quot;,&#xd;
+				&quot;specialty&quot;: &quot;Occupational therapist in private practice&quot;&#xd;
+			}&#xd;
+		},&#xd;
+		&quot;schemaVersion&quot;: &quot;V1.01&quot;,&#xd;
+		&quot;accrediting&quot;: {&#xd;
+			&quot;items&quot;: [],&#xd;
+			&quot;enabled&quot;: &quot;Y&quot;&#xd;
+		},&#xd;
+		&quot;correspondence&quot;: {&#xd;
+			&quot;email&quot;: &quot;gmendez1@inova.com&quot;,&#xd;
+			&quot;phoneExt&quot;: &quot;101&quot;,&#xd;
+			&quot;faxNumber&quot;: &quot;267-333-1112&quot;,&#xd;
+			&quot;phoneNumber&quot;: &quot;267-333-1111&quot;,&#xd;
+			&quot;mailingAddress&quot;: {&#xd;
+				&quot;city&quot;: &quot;Philadelphia&quot;,&#xd;
+				&quot;state&quot;: &quot;PA&quot;,&#xd;
+				&quot;country&quot;: &quot;United States&quot;,&#xd;
+				&quot;zipCode&quot;: &quot;19107&quot;,&#xd;
+				&quot;address1&quot;: &quot;12345 Lee Hwy&quot;,&#xd;
+				&quot;address2&quot;: &quot;Suite 1000&quot;&#xd;
+			}&#xd;
+		},&#xd;
+		&quot;practiceLocation&quot;: {&#xd;
+			&quot;locations&quot;: [{&#xd;
+					&quot;id&quot;: &quot;83820527-b7c2-4cee-a790-86d2a2c0d2c5&quot;,&#xd;
+					&quot;clia&quot;: &quot;36D0334668&quot;,&#xd;
+					&quot;contact&quot;: {&#xd;
+						&quot;email&quot;: &quot;gmendez@inova.com&quot;,&#xd;
+						&quot;phoneExt&quot;: &quot;101&quot;,&#xd;
+						&quot;faxNumber&quot;: &quot;2673331112&quot;,&#xd;
+						&quot;phoneNumber&quot;: &quot;2673331111&quot;&#xd;
+					},&#xd;
+					&quot;ptannpi&quot;: [{&#xd;
+						&quot;id&quot;: &quot;a6c84e98-88d2-4205-b81e-b754c1818958&quot;&#xd;
+					}],&#xd;
+					&quot;haveClia&quot;: &quot;Y&quot;,&#xd;
+					&quot;haveFDACert&quot;: &quot;Y&quot;,&#xd;
+					&quot;locationName&quot;: &quot;Gabriel Mendez&quot;,&#xd;
+					&quot;locationType&quot;: &quot;Group practice office/clinic&quot;,&#xd;
+					&quot;effectiveDate&quot;: &quot;10/01/2018&quot;,&#xd;
+					&quot;mailingAddress&quot;: {&#xd;
+						&quot;city&quot;: &quot;Philadelphia&quot;,&#xd;
+						&quot;state&quot;: &quot;PA&quot;,&#xd;
+						&quot;country&quot;: &quot;United States&quot;,&#xd;
+						&quot;zipCode&quot;: &quot;19107&quot;,&#xd;
+						&quot;address1&quot;: &quot;100 Jefferson St&quot;&#xd;
+					},&#xd;
+					&quot;specialPayments&quot;: {&#xd;
+						&quot;effectiveDate&quot;: &quot;11/11/2010&quot;,&#xd;
+						&quot;mailingAddress&quot;: {&#xd;
+							&quot;city&quot;: &quot;Philadelphia&quot;,&#xd;
+							&quot;state&quot;: &quot;PA&quot;,&#xd;
+							&quot;country&quot;: &quot;United States&quot;,&#xd;
+							&quot;zipCode&quot;: &quot;19107&quot;,&#xd;
+							&quot;address1&quot;: &quot;100 Jefferson St&quot;&#xd;
+						}&#xd;
+					},&#xd;
+					&quot;storageFacility&quot;: {&#xd;
+						&quot;effectiveDate&quot;: &quot;11/11/2010&quot;,&#xd;
+						&quot;mailingAddress&quot;: {&#xd;
+							&quot;city&quot;: &quot;Philadelphia&quot;,&#xd;
+							&quot;state&quot;: &quot;PA&quot;,&#xd;
+							&quot;country&quot;: &quot;United States&quot;,&#xd;
+							&quot;zipCode&quot;: &quot;19107&quot;,&#xd;
+							&quot;address1&quot;: &quot;100 Jefferson St&quot;&#xd;
+						}&#xd;
+					},&#xd;
+					&quot;firstPatientDate&quot;: &quot;10/15/2019&quot;,&#xd;
+					&quot;certificationNumber&quot;: &quot;146548&quot;,&#xd;
+					&quot;storageFacilityUsed&quot;: &quot;Y&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: &quot;55ad98e5-4d14-42a7-9eef-1561ec73fd3b&quot;,&#xd;
+					&quot;contact&quot;: {&#xd;
+						&quot;email&quot;: &quot;gmendez@inova.com&quot;,&#xd;
+						&quot;faxNumber&quot;: &quot;2673331112&quot;,&#xd;
+						&quot;phoneNumber&quot;: &quot;2673331111&quot;&#xd;
+					},&#xd;
+					&quot;haveClia&quot;: &quot;N&quot;,&#xd;
+					&quot;haveFDACert&quot;: &quot;N&quot;,&#xd;
+					&quot;locationName&quot;: &quot;Gabriel Mendez&quot;,&#xd;
+					&quot;locationType&quot;: &quot;Group practice office/clinic&quot;,&#xd;
+					&quot;mailingAddress&quot;: {&#xd;
+						&quot;city&quot;: &quot;Philadelphia&quot;,&#xd;
+						&quot;state&quot;: &quot;PA&quot;,&#xd;
+						&quot;country&quot;: &quot;United States&quot;,&#xd;
+						&quot;zipCode&quot;: &quot;19107&quot;,&#xd;
+						&quot;address1&quot;: &quot;100 Jefferson St&quot;&#xd;
+					},&#xd;
+					&quot;firstPatientDate&quot;: &quot;01/10/2019&quot;&#xd;
+				}&#xd;
+			]&#xd;
+		},&#xd;
+		&quot;billingAgencies&quot;: {&#xd;
+			&quot;billingAgencies&quot;: [{&#xd;
+					&quot;id&quot;: &quot;c0682f6d-6334-4f7e-945a-65f1bb75dbbc&quot;,&#xd;
+					&quot;ssn&quot;: &quot;111-11-1111&quot;,&#xd;
+					&quot;name&quot;: {&#xd;
+						&quot;mi&quot;: &quot;L&quot;,&#xd;
+						&quot;last&quot;: &quot;Name&quot;,&#xd;
+						&quot;first&quot;: &quot;First Name&quot;&#xd;
+					},&#xd;
+					&quot;type&quot;: &quot;Individual&quot;,&#xd;
+					&quot;email&quot;: &quot;gmendez@inova.com&quot;,&#xd;
+					&quot;birthDate&quot;: &quot;11/11/1970&quot;,&#xd;
+					&quot;businessAs&quot;: &quot;Practive Location Name&quot;,&#xd;
+					&quot;agencyState&quot;: &quot;AL&quot;,&#xd;
+					&quot;effectiveDate&quot;: &quot;11/11/2010&quot;,&#xd;
+					&quot;mailingAddress&quot;: {&#xd;
+						&quot;city&quot;: &quot;City/Town&quot;,&#xd;
+						&quot;state&quot;: &quot;AL&quot;,&#xd;
+						&quot;country&quot;: &quot;United States&quot;,&#xd;
+						&quot;zipCode&quot;: &quot;12345&quot;,&#xd;
+						&quot;address1&quot;: &quot;Billing Agency Street Address&quot;&#xd;
+					}&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: &quot;081c7b96-98c9-4583-b70f-004fbca74cf3&quot;,&#xd;
+					&quot;tin&quot;: &quot;111111111&quot;,&#xd;
+					&quot;type&quot;: &quot;organization&quot;,&#xd;
+					&quot;email&quot;: &quot;gmendez@inova.com&quot;,&#xd;
+					&quot;businessAs&quot;: &quot;Doing Business As&quot;,&#xd;
+					&quot;agencyState&quot;: &quot;AK&quot;,&#xd;
+					&quot;effectiveDate&quot;: &quot;11/11/2010&quot;,&#xd;
+					&quot;mailingAddress&quot;: {&#xd;
+						&quot;city&quot;: &quot;Town&quot;,&#xd;
+						&quot;state&quot;: &quot;AK&quot;,&#xd;
+						&quot;country&quot;: &quot;United States&quot;,&#xd;
+						&quot;zipCode&quot;: &quot;12345&quot;,&#xd;
+						&quot;address1&quot;: &quot;Billing Agency Street Address &quot;&#xd;
+					},&#xd;
+					&quot;legalBusinessName&quot;: &quot;Legal Business Name (&quot;&#xd;
+				}&#xd;
+			]&#xd;
+		},&#xd;
+		&quot;personal&quot;: {&#xd;
+			&quot;ssn&quot;: &quot;789123456&quot;,&#xd;
+			&quot;name&quot;: {&#xd;
+				&quot;last&quot;: &quot;Mendez&quot;,&#xd;
+				&quot;first&quot;: &quot;Gabriel&quot;,&#xd;
+				&quot;suffix&quot;: &quot;MD&quot;,&#xd;
+				&quot;middleInitial&quot;: &quot;R&quot;&#xd;
+			},&#xd;
+			&quot;gender&quot;: &quot;MALE&quot;,&#xd;
+			&quot;birthDate&quot;: &quot;01/01/1980&quot;,&#xd;
+			&quot;deathDate&quot;: &quot;10/18/2050&quot;,&#xd;
+			&quot;npiNumber&quot;: &quot;7772221111&quot;,&#xd;
+			&quot;birthState&quot;: &quot;Maryland&quot;,&#xd;
+			&quot;otherNames&quot;: [{&#xd;
+					&quot;id&quot;: &quot;588e1068-14f1-4e69-b00e-5c56c795ba9a&quot;,&#xd;
+					&quot;name&quot;: {&#xd;
+						&quot;last&quot;: &quot;Menendez&quot;,&#xd;
+						&quot;first&quot;: &quot;Professional&quot;,&#xd;
+						&quot;middleInitial&quot;: &quot;J&quot;&#xd;
+					},&#xd;
+					&quot;type&quot;: &quot;PROFESSIONAL NAME&quot;,&#xd;
+					&quot;_nrpm&quot;: {&#xd;
+						&quot;id&quot;: 5&#xd;
+					}&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: &quot;8c22e7b2-3275-4169-a401-e4226ec5accf&quot;,&#xd;
+					&quot;name&quot;: {&#xd;
+						&quot;last&quot;: &quot;Menendez&quot;,&#xd;
+						&quot;first&quot;: &quot;Maiden&quot;,&#xd;
+						&quot;middleInitial&quot;: &quot;J&quot;&#xd;
+					},&#xd;
+					&quot;type&quot;: &quot;FORMER OR MAIDEN NAME&quot;,&#xd;
+					&quot;_nrpm&quot;: {&#xd;
+						&quot;id&quot;: 4&#xd;
+					}&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: &quot;143616c3-8094-4058-8aaa-efa8a6c9dad8&quot;,&#xd;
+					&quot;name&quot;: {&#xd;
+						&quot;last&quot;: &quot;Menendez&quot;,&#xd;
+						&quot;first&quot;: &quot;Gabrial&quot;,&#xd;
+						&quot;suffix&quot;: &quot;MD&quot;,&#xd;
+						&quot;middleInitial&quot;: &quot;J&quot;&#xd;
+					},&#xd;
+					&quot;type&quot;: &quot;OTHER INDIVIDUAL NAME&quot;,&#xd;
+					&quot;_nrpm&quot;: {&#xd;
+						&quot;id&quot;: 3&#xd;
+					},&#xd;
+					&quot;otherDesc&quot;: &quot;Description or other&quot;&#xd;
+				}&#xd;
+			],&#xd;
+			&quot;ptanNumber&quot;: &quot;12345&quot;,&#xd;
+			&quot;birthCountry&quot;: &quot;United States&quot;,&#xd;
+			&quot;graduationYear&quot;: &quot;1999&quot;,&#xd;
+			&quot;residenceState&quot;: &quot;Maryland&quot;,&#xd;
+			&quot;medicalSchoolOther&quot;: &quot;University of Valencia&quot;,&#xd;
+			&quot;otherNamesProvided&quot;: true,&#xd;
+			&quot;acceptingNewPatients&quot;: true,&#xd;
+			&quot;medicalProfessionalSchool&quot;: &quot;OTHER&quot;&#xd;
+		},&#xd;
+		&quot;therapists&quot;: {&#xd;
+			&quot;maintainOffice&quot;: true,&#xd;
+			&quot;homeServicesOnly&quot;: true,&#xd;
+			&quot;renderExternally&quot;: true,&#xd;
+			&quot;ownPrivateOfficeSpace&quot;: true,&#xd;
+			&quot;useExclusiveForPractice&quot;: true&#xd;
+		},&#xd;
+		&quot;psychologists&quot;: {&#xd;
+			&quot;hasDoctoralDegree&quot;: true,&#xd;
+			&quot;doctoralDegreeType&quot;: &quot;Ph.D.&quot;&#xd;
+		},&#xd;
+		&quot;contactInformation&quot;: {&#xd;
+			&quot;contactInformation&quot;: [{&#xd;
+				&quot;id&quot;: &quot;6798361e-4eb9-4e5e-a0ba-dceb24143c02&quot;,&#xd;
+				&quot;name&quot;: {&#xd;
+					&quot;last&quot;: &quot;Smith&quot;,&#xd;
+					&quot;first&quot;: &quot;Jon&quot;,&#xd;
+					&quot;middleInitial&quot;: &quot;&quot;&#xd;
+				},&#xd;
+				&quot;role&quot;: &quot;PRACTITIONER&quot;,&#xd;
+				&quot;_nrpm&quot;: {&#xd;
+					&quot;id&quot;: 1&#xd;
+				},&#xd;
+				&quot;email&quot;: &quot;jonsmith1@inova.com&quot;,&#xd;
+				&quot;endDate&quot;: &quot;06/12/2020&quot;,&#xd;
+				&quot;phoneExt&quot;: &quot;101&quot;,&#xd;
+				&quot;faxNumber&quot;: &quot;267-555-3334&quot;,&#xd;
+				&quot;phoneNumber&quot;: &quot;267-555-3333&quot;,&#xd;
+				&quot;effectiveDate&quot;: &quot;06/12/2018&quot;,&#xd;
+				&quot;mailingAddress&quot;: {&#xd;
+					&quot;city&quot;: &quot;Philadelphia&quot;,&#xd;
+					&quot;state&quot;: &quot;PA&quot;,&#xd;
+					&quot;country&quot;: &quot;United States&quot;,&#xd;
+					&quot;zipCode&quot;: &quot;19107&quot;,&#xd;
+					&quot;address1&quot;: &quot;333 Chain Bridge Road&quot;&#xd;
+				},&#xd;
+				&quot;primaryContact&quot;: true&#xd;
+			}]&#xd;
+		},&#xd;
+		&quot;businessInformation&quot;: {&#xd;
+			&quot;legal&quot;: {&#xd;
+				&quot;adverseLegalActionImposed&quot;: &quot;N&quot;&#xd;
+			},&#xd;
+			&quot;taxID&quot;: &quot;999999999&quot;,&#xd;
+			&quot;medicareID&quot;: &quot;6666666666&quot;,&#xd;
+			&quot;providerID&quot;: &quot;4444444444&quot;,&#xd;
+			&quot;businessName&quot;: &quot;Business Information-Legal Business Name&quot;,&#xd;
+			&quot;practiceType&quot;: &quot;Corporation&quot;,&#xd;
+			&quot;soleProprietor&quot;: {&#xd;
+				&quot;ein&quot;: &quot;111111111&quot;,&#xd;
+				&quot;taxType&quot;: &quot;EIN&quot;&#xd;
+			},&#xd;
+			&quot;incorporatedState&quot;: &quot;Alaska&quot;,&#xd;
+			&quot;incorporationDate&quot;: &quot;11/11/2010&quot;,&#xd;
+			&quot;isIHFEnrollingMAC&quot;: &quot;Y&quot;,&#xd;
+			&quot;businessRegistrationType&quot;: &quot;Proprietary&quot;&#xd;
+		},&#xd;
+		&quot;psychologistBilling&quot;: {&#xd;
+			&quot;directBilling&quot;: true,&#xd;
+			&quot;confinedOffice&quot;: true,&#xd;
+			&quot;facilityLocation&quot;: true,&#xd;
+			&quot;independentServices&quot;: true,&#xd;
+			&quot;treatsOtherPatients&quot;: true,&#xd;
+			&quot;independentTreatment&quot;: true&#xd;
+		},&#xd;
+		&quot;licenseAndCertification&quot;: {&#xd;
+			&quot;dea&quot;: {&#xd;
+				&quot;deaNumbers&quot;: [{&#xd;
+						&quot;id&quot;: &quot;61ae6ac4-e9b9-4ce3-bb0c-725cb826808a&quot;,&#xd;
+						&quot;_nrpm&quot;: {&#xd;
+							&quot;id&quot;: 3&#xd;
+						},&#xd;
+						&quot;number&quot;: &quot;D22931&quot;,&#xd;
+						&quot;stateIssued&quot;: &quot;PA&quot;,&#xd;
+						&quot;effectiveDate&quot;: &quot;05/25/1999&quot;,&#xd;
+						&quot;expirationDate&quot;: &quot;05/25/2009&quot;&#xd;
+					},&#xd;
+					{&#xd;
+						&quot;id&quot;: &quot;212600ef-bd99-4bac-9f52-f9193e72643c&quot;,&#xd;
+						&quot;_nrpm&quot;: {&#xd;
+							&quot;id&quot;: 4&#xd;
+						},&#xd;
+						&quot;number&quot;: &quot;D87834&quot;,&#xd;
+						&quot;stateIssued&quot;: &quot;PA&quot;,&#xd;
+						&quot;effectiveDate&quot;: &quot;05/25/2009&quot;,&#xd;
+						&quot;expirationDate&quot;: &quot;05/25/2019&quot;&#xd;
+					}&#xd;
+				]&#xd;
+			},&#xd;
+			&quot;license&quot;: {&#xd;
+				&quot;licenseNumbers&quot;: [{&#xd;
+						&quot;id&quot;: &quot;fdd19071-1552-4b8d-aa38-c0371bba7cb0&quot;,&#xd;
+						&quot;_nrpm&quot;: {&#xd;
+							&quot;id&quot;: 5&#xd;
+						},&#xd;
+						&quot;number&quot;: &quot;17899&quot;,&#xd;
+						&quot;stateIssued&quot;: &quot;PA&quot;,&#xd;
+						&quot;effectiveDate&quot;: &quot;01/01/2000&quot;,&#xd;
+						&quot;expirationDate&quot;: &quot;01/01/2010&quot;&#xd;
+					},&#xd;
+					{&#xd;
+						&quot;id&quot;: &quot;d951a285-a1dc-4f4a-a029-5ddd55ac1fa4&quot;,&#xd;
+						&quot;_nrpm&quot;: {&#xd;
+							&quot;id&quot;: 6&#xd;
+						},&#xd;
+						&quot;number&quot;: &quot;73001&quot;,&#xd;
+						&quot;stateIssued&quot;: &quot;PA&quot;,&#xd;
+						&quot;effectiveDate&quot;: &quot;01/01/2010&quot;,&#xd;
+						&quot;expirationDate&quot;: &quot;01/01/2020&quot;&#xd;
+					}&#xd;
+				]&#xd;
+			},&#xd;
+			&quot;certification&quot;: {&#xd;
+				&quot;certificationNumbers&quot;: [{&#xd;
+						&quot;id&quot;: &quot;40662dc9-aae1-4fb0-9e00-842636875d6b&quot;,&#xd;
+						&quot;_nrpm&quot;: {&#xd;
+							&quot;id&quot;: 1&#xd;
+						},&#xd;
+						&quot;number&quot;: &quot;PA293832&quot;,&#xd;
+						&quot;stateIssued&quot;: &quot;PA&quot;,&#xd;
+						&quot;effectiveDate&quot;: &quot;05/25/1999&quot;,&#xd;
+						&quot;expirationDate&quot;: &quot;05/25/2009&quot;&#xd;
+					},&#xd;
+					{&#xd;
+						&quot;id&quot;: &quot;5ee6897f-4f9b-481b-9d59-c8dcd0888e1c&quot;,&#xd;
+						&quot;_nrpm&quot;: {&#xd;
+							&quot;id&quot;: 2&#xd;
+						},&#xd;
+						&quot;number&quot;: &quot;PA753272&quot;,&#xd;
+						&quot;stateIssued&quot;: &quot;PA&quot;,&#xd;
+						&quot;effectiveDate&quot;: &quot;05/25/2009&quot;,&#xd;
+						&quot;expirationDate&quot;: &quot;12/31/9999&quot;&#xd;
+					},&#xd;
+					{&#xd;
+						&quot;id&quot;: &quot;7ef69306-bb9b-4d4f-b43a-823456b5c29c&quot;,&#xd;
+						&quot;_nrpm&quot;: {&#xd;
+							&quot;id&quot;: 10&#xd;
+						},&#xd;
+						&quot;number&quot;: &quot;PA293832&quot;,&#xd;
+						&quot;stateIssued&quot;: &quot;PA&quot;,&#xd;
+						&quot;effectiveDate&quot;: &quot;05/25/1999&quot;&#xd;
+					}&#xd;
+				]&#xd;
+			}&#xd;
+		},&#xd;
+		&quot;legal&quot;: {&#xd;
+			&quot;legalActions&quot;: [],&#xd;
+			&quot;adverseLegalActionImposed&quot;: &quot;N&quot;&#xd;
+		},&#xd;
+		&quot;nursePractitioners&quot;: {&#xd;
+			&quot;skilledNursingFacilities&quot;: [{&#xd;
+					&quot;id&quot;: &quot;4b3f1ac8-159f-4cdd-ae47-a7bfc451c92e&quot;,&#xd;
+					&quot;name&quot;: &quot;Skilled Nursing Facility One&quot;,&#xd;
+					&quot;_nrpm&quot;: {&#xd;
+						&quot;id&quot;: 31&#xd;
+					},&#xd;
+					&quot;email&quot;: &quot;test@contact.data&quot;,&#xd;
+					&quot;taxId&quot;: &quot;123456789&quot;,&#xd;
+					&quot;address&quot;: {&#xd;
+						&quot;city&quot;: &quot;Charleston&quot;,&#xd;
+						&quot;state&quot;: &quot;SC&quot;,&#xd;
+						&quot;country&quot;: &quot;United States&quot;,&#xd;
+						&quot;zipCode&quot;: &quot;12345+1234&quot;,&#xd;
+						&quot;address1&quot;: &quot;123 Test Street&quot;,&#xd;
+						&quot;address2&quot;: &quot;Suite 2&quot;&#xd;
+					},&#xd;
+					&quot;phoneExt&quot;: &quot;54321&quot;,&#xd;
+					&quot;faxNumber&quot;: &quot;123-456-7890&quot;,&#xd;
+					&quot;phoneNumber&quot;: &quot;098-765-4321&quot;,&#xd;
+					&quot;effectiveDate&quot;: &quot;12/31/2001&quot;,&#xd;
+					&quot;expirationDate&quot;: &quot;12/31/2011&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: &quot;311d5324-9627-4ba2-9ac8-6d2ad504e6c8&quot;,&#xd;
+					&quot;name&quot;: &quot;Skilled Nursing Facility Two&quot;,&#xd;
+					&quot;_nrpm&quot;: {&#xd;
+						&quot;id&quot;: 30&#xd;
+					},&#xd;
+					&quot;email&quot;: &quot;test@contact.info&quot;,&#xd;
+					&quot;taxId&quot;: &quot;987654321&quot;,&#xd;
+					&quot;address&quot;: {&#xd;
+						&quot;city&quot;: &quot;Charleston&quot;,&#xd;
+						&quot;state&quot;: &quot;SC&quot;,&#xd;
+						&quot;country&quot;: &quot;United States&quot;,&#xd;
+						&quot;zipCode&quot;: &quot;54321+4321&quot;,&#xd;
+						&quot;address1&quot;: &quot;321 Test Street&quot;,&#xd;
+						&quot;address2&quot;: &quot;Suite 2&quot;&#xd;
+					},&#xd;
+					&quot;phoneExt&quot;: &quot;12345&quot;,&#xd;
+					&quot;faxNumber&quot;: &quot;098-765-4321&quot;,&#xd;
+					&quot;phoneNumber&quot;: &quot;123-456-7890&quot;,&#xd;
+					&quot;effectiveDate&quot;: &quot;12/31/2011&quot;,&#xd;
+					&quot;expirationDate&quot;: &quot;12/31/2021&quot;&#xd;
+				}&#xd;
+			],&#xd;
+			&quot;skilledNursingFacilitiesProvided&quot;: true&#xd;
+		},&#xd;
+		&quot;managers&quot;: {&#xd;
+			&quot;managers&quot;: [{&#xd;
+				&quot;id&quot;: &quot;3f26be80-d214-4bf6-b46f-bc51876ba5db&quot;,&#xd;
+				&quot;npi&quot;: &quot;4444444444&quot;,&#xd;
+				&quot;ssn&quot;: &quot;222-28-8888&quot;,&#xd;
+				&quot;name&quot;: {&#xd;
+					&quot;last&quot;: &quot;Name&quot;,&#xd;
+					&quot;first&quot;: &quot;First Name&quot;,&#xd;
+					&quot;suffix&quot;: &quot;Sr.&quot;,&#xd;
+					&quot;middleInitial&quot;: &quot;L&quot;&#xd;
+				},&#xd;
+				&quot;ptan&quot;: &quot;777777777&quot;,&#xd;
+				&quot;type&quot;: &quot;Individual&quot;,&#xd;
+				&quot;legal&quot;: {&#xd;
+					&quot;adverseLegalActionImposed&quot;: &quot;N&quot;&#xd;
+				},&#xd;
+				&quot;birthDate&quot;: &quot;11/11/1970&quot;,&#xd;
+				&quot;birthState&quot;: &quot;AL&quot;,&#xd;
+				&quot;birthCountry&quot;: &quot;United States&quot;,&#xd;
+				&quot;effectiveDate&quot;: &quot;03/22/2015&quot;,&#xd;
+				&quot;associationTypes&quot;: {&#xd;
+					&quot;isManagingEmployee&quot;: true&#xd;
+				},&#xd;
+				&quot;individualAcquired&quot;: {&#xd;
+					&quot;effectiveDate&quot;: &quot;11/11/2010&quot;&#xd;
+				}&#xd;
+			}]&#xd;
+		}&#xd;
+	}&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">application-api-${envt}.apps.pecos-staging.cpi.cmscloud.local</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/applications</stringProp>
+          <stringProp name="HTTPSampler.method">PUT</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Status Code Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">1</intProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Request - Application_submission" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+	&quot;event_id&quot;: &quot;01d1fa63-7120-426d-9dac-d4cafac62d0f&quot;,&#xd;
+	&quot;application_event_type&quot;: &quot;SUBMITTED&quot;,&#xd;
+	&quot;application_metadata&quot;: {&#xd;
+		&quot;application_type&quot;: &quot;855I&quot;&#xd;
+	},&#xd;
+	&quot;event_timestamp&quot;: 1538154220439,&#xd;
+	&quot;entity_id&quot;: &quot;${entityId}&quot;,&#xd;
+	&quot;application_id&quot;: &quot;${applicationId}&quot;&#xd;
+}&#xd;
+	</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">application-api-${envt}.apps.pecos-staging.cpi.cmscloud.local</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">application-events</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Status Code Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">1</intProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">event_id</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.event_id</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+            <stringProp name="JSONPostProcessor.defaultValues">No_Default</stringProp>
+            <stringProp name="Scope.variable">trackingid</stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="ReviewApp- afterSubmission_get" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">case-management-api-${envt}.apps.pecos-staging.cpi.cmscloud.local</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/casemanagement/findByApplicationId/${applicationId}</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Status Code Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">1</intProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor" enabled="false">
+            <stringProp name="JSONPostProcessor.referenceNames">currentStatus1</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.currentEventState</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers">0</stringProp>
+            <stringProp name="JSONPostProcessor.defaultValues">No_Default</stringProp>
+            <stringProp name="Scope.variable">trackingid</stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="false">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-26093087">RECEIVED</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">1</intProp>
+            <stringProp name="Assertion.scope">variable</stringProp>
+            <stringProp name="Scope.variable">currentStatus1</stringProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">applicationEventId</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$..applicationEventId</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="verification" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+  &quot;applicationId&quot;: &quot;${applicationId}&quot;,&#xd;
+  &quot;applicationEventId&quot;: &quot;${event_id}&quot;,&#xd;
+  &quot;submissionReason&quot;: &quot;INITIAL_ENROLLMENT&quot;,&#xd;
+  &quot;formType&quot;: &quot;855I&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">verification-attestation-api-${envt}.apps.pecos-staging.cpi.cmscloud.local/</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">verifications</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Status Code Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">1</intProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">verificationId</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.verificationId</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers">0</stringProp>
+            <stringProp name="JSONPostProcessor.defaultValues">No_Default</stringProp>
+            <stringProp name="Scope.variable">trackingid</stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GetAllVerificationItems" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">verification-attestation-api-${envt}.apps.pecos-staging.cpi.cmscloud.local/</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">verifications/${verificationId}</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">X-User-ID</stringProp>
+                <stringProp name="Header.value">1</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Accept-Charset</stringProp>
+                <stringProp name="Header.value">UTF-8</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Status Code Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">1</intProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="JSON Assertion_MED_Business" enabled="true">
+            <stringProp name="JSON_PATH">$..[?(@.sectionDescription ==&apos;Business Information&apos; &amp;&amp; @.typeDescription==&apos;Medicare Exclusion Database (MED) File&apos;)].data</stringProp>
+            <stringProp name="EXPECTED_VALUE">{&quot;medfile&quot;:{&quot;business&quot;:{&quot;legalBusinessName&quot;:&quot;Business Information-Legal Business Name&quot;,&quot;tin&quot;:&quot;999999999&quot;}}}</stringProp>
+            <boolProp name="JSONVALIDATION">true</boolProp>
+            <boolProp name="EXPECT_NULL">false</boolProp>
+            <boolProp name="INVERT">false</boolProp>
+            <boolProp name="ISREGEX">true</boolProp>
+          </JSONPathAssertion>
+          <hashTree/>
+        </hashTree>
+        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="true">
+          <boolProp name="displayJMeterProperties">true</boolProp>
+          <boolProp name="displayJMeterVariables">true</boolProp>
+          <boolProp name="displaySystemProperties">false</boolProp>
+        </DebugSampler>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="855I_MED_VerificationBilling_Indv_InitialEnrollment" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1538652557000</longProp>
+        <longProp name="ThreadGroup.end_time">1536843690000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay">10</stringProp>
+        <boolProp name="ThreadGroup.delayedStart">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
+          <stringProp name="ConstantTimer.delay">1000</stringProp>
+        </ConstantTimer>
+        <hashTree/>
+        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+          <collectionProp name="Arguments.arguments">
+            <elementProp name="envt" elementType="Argument">
+              <stringProp name="Argument.name">envt</stringProp>
+              <stringProp name="Argument.value">staging</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+          </collectionProp>
+        </Arguments>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Case_Mgmt_CreateCase" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">case-management-api-${envt}.apps.pecos-staging.cpi.cmscloud.local</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">casemanagement/829bbcfc-fd1c-4572-a106-d71ccff1f04d</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response StatusCode Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49587">201</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">1</intProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">applicationId</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.applicationId</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+            <stringProp name="JSONPostProcessor.defaultValues">No_Default</stringProp>
+            <stringProp name="Scope.variable">trackingid</stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Text Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="1870512352">trackingNumber</stringProp>
+              <stringProp name="31430900">eventType</stringProp>
+              <stringProp name="-2129778896">startDate</stringProp>
+              <stringProp name="-800639515">applicationEventId</stringProp>
+              <stringProp name="-23960743">pecoseUserId</stringProp>
+              <stringProp name="598371679">createdBy</stringProp>
+              <stringProp name="951530617">content</stringProp>
+              <stringProp name="1917896816">currentEventState</stringProp>
+              <stringProp name="-1695810125">contractJurisdiction</stringProp>
+              <stringProp name="-1011352949">applicationId</stringProp>
+              <stringProp name="-2102099874">entityId</stringProp>
+              <stringProp name="-580336490">verificationId</stringProp>
+              <stringProp name="3575610">type</stringProp>
+              <stringProp name="-892481550">status</stringProp>
+              <stringProp name="-2129778896">startDate</stringProp>
+              <stringProp name="-1607727319">endDate</stringProp>
+              <stringProp name="1092481112">pecosUserId</stringProp>
+              <stringProp name="-987494927">provider</stringProp>
+              <stringProp name="-1694759682">specialty</stringProp>
+              <stringProp name="1575888299">submittalReason</stringProp>
+              <stringProp name="1930260974">providerRepresentative</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">caseId</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.trackingNumber</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+            <stringProp name="JSONPostProcessor.defaultValues">No_Default</stringProp>
+            <stringProp name="Scope.variable">trackingid</stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Applicationtype_update" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&#xd;
+&#xd;
+{&#xd;
+	&quot;form_type&quot;: &quot;855I&quot;,&#xd;
+	&quot;reason_type&quot;: &quot;INITIAL_ENROLLMENT&quot;,&#xd;
+	&quot;ownership_transaction_participant&quot;: false,&#xd;
+	&quot;optional_sections&quot;: [&quot;855I/ELECTRONICS_FUNDS_TRANSFER&quot;]&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">application-api-${envt}.apps.pecos-staging.cpi.cmscloud.local</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">initialQuestionnaire/${applicationId}</stringProp>
+          <stringProp name="HTTPSampler.method">PUT</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Status Code Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">1</intProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="App- UpdateAppMetaData" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+	&quot;entity_id&quot;: &quot;${entityId}&quot;,&#xd;
+	&quot;application_id&quot;: &quot;${applicationId}&quot;,&#xd;
+	&quot;application_data&quot;: {&#xd;
+		&quot;residency&quot;: {&#xd;
+			&quot;type&quot;: &quot;RESIDENCY&quot;,&#xd;
+			&quot;facility&quot;: {&#xd;
+				&quot;name&quot;: &quot;3RD AVE RAD AND IMAGING&quot;,&#xd;
+				&quot;address&quot;: {&#xd;
+					&quot;city&quot;: &quot;Delaware City&quot;,&#xd;
+					&quot;state&quot;: &quot;DE&quot;,&#xd;
+					&quot;country&quot;: &quot;United States&quot;,&#xd;
+					&quot;zipCode&quot;: &quot;19706&quot;,&#xd;
+					&quot;address1&quot;: &quot;21 15th Street&quot;,&#xd;
+					&quot;address2&quot;: &quot;515&quot;&#xd;
+				}&#xd;
+			},&#xd;
+			&quot;completionDate&quot;: &quot;12/31/2020&quot;,&#xd;
+			&quot;facilityPrerequisite&quot;: true,&#xd;
+			&quot;trainingCostsCovered&quot;: true,&#xd;
+			&quot;facilityPrerequisite2&quot;: true,&#xd;
+			&quot;serviceOtherFacilities&quot;: true&#xd;
+		},&#xd;
+		&quot;homeService&quot;: {&#xd;
+			&quot;performsHomeService&quot;: &quot;N&quot;&#xd;
+		},&#xd;
+		&quot;formType&quot;: &quot;855I&quot;,&#xd;
+		&quot;specialty&quot;: {&#xd;
+			&quot;type&quot;: &quot;PHYSICIAN&quot;,&#xd;
+			&quot;physician&quot;: {&#xd;
+				&quot;primaryOther&quot;: &quot;Specified Undefined Primary Specialty&quot;,&#xd;
+				&quot;secondaryOther&quot;: &quot;Specified Undefined Secondary Specialty&quot;,&#xd;
+				&quot;primarySpecialty&quot;: &quot;Undefined&quot;,&#xd;
+				&quot;secondarySpecialties&quot;: [&#xd;
+					&quot;Undefined&quot;,&#xd;
+					&quot;General practice&quot;&#xd;
+				]&#xd;
+			},&#xd;
+			&quot;nonPhysician&quot;: {&#xd;
+				&quot;other&quot;: &quot;Specified Undefined Specialty&quot;,&#xd;
+				&quot;specialty&quot;: &quot;Occupational therapist in private practice&quot;&#xd;
+			}&#xd;
+		},&#xd;
+		&quot;schemaVersion&quot;: &quot;V1.01&quot;,&#xd;
+		&quot;accrediting&quot;: {&#xd;
+			&quot;items&quot;: [],&#xd;
+			&quot;enabled&quot;: &quot;Y&quot;&#xd;
+		},&#xd;
+		&quot;correspondence&quot;: {&#xd;
+			&quot;email&quot;: &quot;gmendez1@inova.com&quot;,&#xd;
+			&quot;phoneExt&quot;: &quot;101&quot;,&#xd;
+			&quot;faxNumber&quot;: &quot;267-333-1112&quot;,&#xd;
+			&quot;phoneNumber&quot;: &quot;267-333-1111&quot;,&#xd;
+			&quot;mailingAddress&quot;: {&#xd;
+				&quot;city&quot;: &quot;Philadelphia&quot;,&#xd;
+				&quot;state&quot;: &quot;PA&quot;,&#xd;
+				&quot;country&quot;: &quot;United States&quot;,&#xd;
+				&quot;zipCode&quot;: &quot;19107&quot;,&#xd;
+				&quot;address1&quot;: &quot;12345 Lee Hwy&quot;,&#xd;
+				&quot;address2&quot;: &quot;Suite 1000&quot;&#xd;
+			}&#xd;
+		},&#xd;
+		&quot;practiceLocation&quot;: {&#xd;
+			&quot;locations&quot;: [{&#xd;
+					&quot;id&quot;: &quot;83820527-b7c2-4cee-a790-86d2a2c0d2c5&quot;,&#xd;
+					&quot;clia&quot;: &quot;36D0334668&quot;,&#xd;
+					&quot;contact&quot;: {&#xd;
+						&quot;email&quot;: &quot;gmendez@inova.com&quot;,&#xd;
+						&quot;phoneExt&quot;: &quot;101&quot;,&#xd;
+						&quot;faxNumber&quot;: &quot;2673331112&quot;,&#xd;
+						&quot;phoneNumber&quot;: &quot;2673331111&quot;&#xd;
+					},&#xd;
+					&quot;ptannpi&quot;: [{&#xd;
+						&quot;id&quot;: &quot;a6c84e98-88d2-4205-b81e-b754c1818958&quot;&#xd;
+					}],&#xd;
+					&quot;haveClia&quot;: &quot;Y&quot;,&#xd;
+					&quot;haveFDACert&quot;: &quot;Y&quot;,&#xd;
+					&quot;locationName&quot;: &quot;Gabriel Mendez&quot;,&#xd;
+					&quot;locationType&quot;: &quot;Group practice office/clinic&quot;,&#xd;
+					&quot;effectiveDate&quot;: &quot;10/01/2018&quot;,&#xd;
+					&quot;mailingAddress&quot;: {&#xd;
+						&quot;city&quot;: &quot;Philadelphia&quot;,&#xd;
+						&quot;state&quot;: &quot;PA&quot;,&#xd;
+						&quot;country&quot;: &quot;United States&quot;,&#xd;
+						&quot;zipCode&quot;: &quot;19107&quot;,&#xd;
+						&quot;address1&quot;: &quot;100 Jefferson St&quot;&#xd;
+					},&#xd;
+					&quot;specialPayments&quot;: {&#xd;
+						&quot;effectiveDate&quot;: &quot;11/11/2010&quot;,&#xd;
+						&quot;mailingAddress&quot;: {&#xd;
+							&quot;city&quot;: &quot;Philadelphia&quot;,&#xd;
+							&quot;state&quot;: &quot;PA&quot;,&#xd;
+							&quot;country&quot;: &quot;United States&quot;,&#xd;
+							&quot;zipCode&quot;: &quot;19107&quot;,&#xd;
+							&quot;address1&quot;: &quot;100 Jefferson St&quot;&#xd;
+						}&#xd;
+					},&#xd;
+					&quot;storageFacility&quot;: {&#xd;
+						&quot;effectiveDate&quot;: &quot;11/11/2010&quot;,&#xd;
+						&quot;mailingAddress&quot;: {&#xd;
+							&quot;city&quot;: &quot;Philadelphia&quot;,&#xd;
+							&quot;state&quot;: &quot;PA&quot;,&#xd;
+							&quot;country&quot;: &quot;United States&quot;,&#xd;
+							&quot;zipCode&quot;: &quot;19107&quot;,&#xd;
+							&quot;address1&quot;: &quot;100 Jefferson St&quot;&#xd;
+						}&#xd;
+					},&#xd;
+					&quot;firstPatientDate&quot;: &quot;10/15/2019&quot;,&#xd;
+					&quot;certificationNumber&quot;: &quot;146548&quot;,&#xd;
+					&quot;storageFacilityUsed&quot;: &quot;Y&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: &quot;55ad98e5-4d14-42a7-9eef-1561ec73fd3b&quot;,&#xd;
+					&quot;contact&quot;: {&#xd;
+						&quot;email&quot;: &quot;gmendez@inova.com&quot;,&#xd;
+						&quot;faxNumber&quot;: &quot;2673331112&quot;,&#xd;
+						&quot;phoneNumber&quot;: &quot;2673331111&quot;&#xd;
+					},&#xd;
+					&quot;haveClia&quot;: &quot;N&quot;,&#xd;
+					&quot;haveFDACert&quot;: &quot;N&quot;,&#xd;
+					&quot;locationName&quot;: &quot;Gabriel Mendez&quot;,&#xd;
+					&quot;locationType&quot;: &quot;Group practice office/clinic&quot;,&#xd;
+					&quot;mailingAddress&quot;: {&#xd;
+						&quot;city&quot;: &quot;Philadelphia&quot;,&#xd;
+						&quot;state&quot;: &quot;PA&quot;,&#xd;
+						&quot;country&quot;: &quot;United States&quot;,&#xd;
+						&quot;zipCode&quot;: &quot;19107&quot;,&#xd;
+						&quot;address1&quot;: &quot;100 Jefferson St&quot;&#xd;
+					},&#xd;
+					&quot;firstPatientDate&quot;: &quot;01/10/2019&quot;&#xd;
+				}&#xd;
+			]&#xd;
+		},&#xd;
+		&quot;billingAgencies&quot;: {&#xd;
+			&quot;billingAgencies&quot;: [{&#xd;
+					&quot;id&quot;: &quot;c0682f6d-6334-4f7e-945a-65f1bb75dbbc&quot;,&#xd;
+					&quot;ssn&quot;: &quot;111-11-1111&quot;,&#xd;
+					&quot;name&quot;: {&#xd;
+						&quot;mi&quot;: &quot;L&quot;,&#xd;
+						&quot;last&quot;: &quot;Name&quot;,&#xd;
+						&quot;first&quot;: &quot;First Name&quot;&#xd;
+					},&#xd;
+					&quot;type&quot;: &quot;Individual&quot;,&#xd;
+					&quot;email&quot;: &quot;gmendez@inova.com&quot;,&#xd;
+					&quot;birthDate&quot;: &quot;11/11/1970&quot;,&#xd;
+					&quot;businessAs&quot;: &quot;Practive Location Name&quot;,&#xd;
+					&quot;agencyState&quot;: &quot;AL&quot;,&#xd;
+					&quot;effectiveDate&quot;: &quot;11/11/2010&quot;,&#xd;
+					&quot;mailingAddress&quot;: {&#xd;
+						&quot;city&quot;: &quot;City/Town&quot;,&#xd;
+						&quot;state&quot;: &quot;AL&quot;,&#xd;
+						&quot;country&quot;: &quot;United States&quot;,&#xd;
+						&quot;zipCode&quot;: &quot;12345&quot;,&#xd;
+						&quot;address1&quot;: &quot;Billing Agency Street Address&quot;&#xd;
+					}&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: &quot;081c7b96-98c9-4583-b70f-004fbca74cf3&quot;,&#xd;
+					&quot;tin&quot;: &quot;111111111&quot;,&#xd;
+					&quot;type&quot;: &quot;organization&quot;,&#xd;
+					&quot;email&quot;: &quot;gmendez@inova.com&quot;,&#xd;
+					&quot;businessAs&quot;: &quot;Doing Business As&quot;,&#xd;
+					&quot;agencyState&quot;: &quot;AK&quot;,&#xd;
+					&quot;effectiveDate&quot;: &quot;11/11/2010&quot;,&#xd;
+					&quot;mailingAddress&quot;: {&#xd;
+						&quot;city&quot;: &quot;Town&quot;,&#xd;
+						&quot;state&quot;: &quot;AK&quot;,&#xd;
+						&quot;country&quot;: &quot;United States&quot;,&#xd;
+						&quot;zipCode&quot;: &quot;12345&quot;,&#xd;
+						&quot;address1&quot;: &quot;Billing Agency Street Address &quot;&#xd;
+					},&#xd;
+					&quot;legalBusinessName&quot;: &quot;Legal Business Name (&quot;&#xd;
+				}&#xd;
+			]&#xd;
+		},&#xd;
+		&quot;personal&quot;: {&#xd;
+			&quot;ssn&quot;: &quot;789123456&quot;,&#xd;
+			&quot;name&quot;: {&#xd;
+				&quot;last&quot;: &quot;Mendez&quot;,&#xd;
+				&quot;first&quot;: &quot;Gabriel&quot;,&#xd;
+				&quot;suffix&quot;: &quot;MD&quot;,&#xd;
+				&quot;middleInitial&quot;: &quot;R&quot;&#xd;
+			},&#xd;
+			&quot;gender&quot;: &quot;MALE&quot;,&#xd;
+			&quot;birthDate&quot;: &quot;01/01/1980&quot;,&#xd;
+			&quot;deathDate&quot;: &quot;10/18/2050&quot;,&#xd;
+			&quot;npiNumber&quot;: &quot;7772221111&quot;,&#xd;
+			&quot;birthState&quot;: &quot;Maryland&quot;,&#xd;
+			&quot;otherNames&quot;: [{&#xd;
+					&quot;id&quot;: &quot;588e1068-14f1-4e69-b00e-5c56c795ba9a&quot;,&#xd;
+					&quot;name&quot;: {&#xd;
+						&quot;last&quot;: &quot;Menendez&quot;,&#xd;
+						&quot;first&quot;: &quot;Professional&quot;,&#xd;
+						&quot;middleInitial&quot;: &quot;J&quot;&#xd;
+					},&#xd;
+					&quot;type&quot;: &quot;PROFESSIONAL NAME&quot;,&#xd;
+					&quot;_nrpm&quot;: {&#xd;
+						&quot;id&quot;: 5&#xd;
+					}&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: &quot;8c22e7b2-3275-4169-a401-e4226ec5accf&quot;,&#xd;
+					&quot;name&quot;: {&#xd;
+						&quot;last&quot;: &quot;Menendez&quot;,&#xd;
+						&quot;first&quot;: &quot;Maiden&quot;,&#xd;
+						&quot;middleInitial&quot;: &quot;J&quot;&#xd;
+					},&#xd;
+					&quot;type&quot;: &quot;FORMER OR MAIDEN NAME&quot;,&#xd;
+					&quot;_nrpm&quot;: {&#xd;
+						&quot;id&quot;: 4&#xd;
+					}&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: &quot;143616c3-8094-4058-8aaa-efa8a6c9dad8&quot;,&#xd;
+					&quot;name&quot;: {&#xd;
+						&quot;last&quot;: &quot;Menendez&quot;,&#xd;
+						&quot;first&quot;: &quot;Gabrial&quot;,&#xd;
+						&quot;suffix&quot;: &quot;MD&quot;,&#xd;
+						&quot;middleInitial&quot;: &quot;J&quot;&#xd;
+					},&#xd;
+					&quot;type&quot;: &quot;OTHER INDIVIDUAL NAME&quot;,&#xd;
+					&quot;_nrpm&quot;: {&#xd;
+						&quot;id&quot;: 3&#xd;
+					},&#xd;
+					&quot;otherDesc&quot;: &quot;Description or other&quot;&#xd;
+				}&#xd;
+			],&#xd;
+			&quot;ptanNumber&quot;: &quot;12345&quot;,&#xd;
+			&quot;birthCountry&quot;: &quot;United States&quot;,&#xd;
+			&quot;graduationYear&quot;: &quot;1999&quot;,&#xd;
+			&quot;residenceState&quot;: &quot;Maryland&quot;,&#xd;
+			&quot;medicalSchoolOther&quot;: &quot;University of Valencia&quot;,&#xd;
+			&quot;otherNamesProvided&quot;: true,&#xd;
+			&quot;acceptingNewPatients&quot;: true,&#xd;
+			&quot;medicalProfessionalSchool&quot;: &quot;OTHER&quot;&#xd;
+		},&#xd;
+		&quot;therapists&quot;: {&#xd;
+			&quot;maintainOffice&quot;: true,&#xd;
+			&quot;homeServicesOnly&quot;: true,&#xd;
+			&quot;renderExternally&quot;: true,&#xd;
+			&quot;ownPrivateOfficeSpace&quot;: true,&#xd;
+			&quot;useExclusiveForPractice&quot;: true&#xd;
+		},&#xd;
+		&quot;psychologists&quot;: {&#xd;
+			&quot;hasDoctoralDegree&quot;: true,&#xd;
+			&quot;doctoralDegreeType&quot;: &quot;Ph.D.&quot;&#xd;
+		},&#xd;
+		&quot;contactInformation&quot;: {&#xd;
+			&quot;contactInformation&quot;: [{&#xd;
+				&quot;id&quot;: &quot;6798361e-4eb9-4e5e-a0ba-dceb24143c02&quot;,&#xd;
+				&quot;name&quot;: {&#xd;
+					&quot;last&quot;: &quot;Smith&quot;,&#xd;
+					&quot;first&quot;: &quot;Jon&quot;,&#xd;
+					&quot;middleInitial&quot;: &quot;&quot;&#xd;
+				},&#xd;
+				&quot;role&quot;: &quot;PRACTITIONER&quot;,&#xd;
+				&quot;_nrpm&quot;: {&#xd;
+					&quot;id&quot;: 1&#xd;
+				},&#xd;
+				&quot;email&quot;: &quot;jonsmith1@inova.com&quot;,&#xd;
+				&quot;endDate&quot;: &quot;06/12/2020&quot;,&#xd;
+				&quot;phoneExt&quot;: &quot;101&quot;,&#xd;
+				&quot;faxNumber&quot;: &quot;267-555-3334&quot;,&#xd;
+				&quot;phoneNumber&quot;: &quot;267-555-3333&quot;,&#xd;
+				&quot;effectiveDate&quot;: &quot;06/12/2018&quot;,&#xd;
+				&quot;mailingAddress&quot;: {&#xd;
+					&quot;city&quot;: &quot;Philadelphia&quot;,&#xd;
+					&quot;state&quot;: &quot;PA&quot;,&#xd;
+					&quot;country&quot;: &quot;United States&quot;,&#xd;
+					&quot;zipCode&quot;: &quot;19107&quot;,&#xd;
+					&quot;address1&quot;: &quot;333 Chain Bridge Road&quot;&#xd;
+				},&#xd;
+				&quot;primaryContact&quot;: true&#xd;
+			}]&#xd;
+		},&#xd;
+		&quot;businessInformation&quot;: {&#xd;
+			&quot;legal&quot;: {&#xd;
+				&quot;adverseLegalActionImposed&quot;: &quot;N&quot;&#xd;
+			},&#xd;
+			&quot;taxID&quot;: &quot;999999999&quot;,&#xd;
+			&quot;medicareID&quot;: &quot;6666666666&quot;,&#xd;
+			&quot;providerID&quot;: &quot;4444444444&quot;,&#xd;
+			&quot;businessName&quot;: &quot;Business Information-Legal Business Name&quot;,&#xd;
+			&quot;practiceType&quot;: &quot;Corporation&quot;,&#xd;
+			&quot;soleProprietor&quot;: {&#xd;
+				&quot;ein&quot;: &quot;111111111&quot;,&#xd;
+				&quot;taxType&quot;: &quot;EIN&quot;&#xd;
+			},&#xd;
+			&quot;incorporatedState&quot;: &quot;Alaska&quot;,&#xd;
+			&quot;incorporationDate&quot;: &quot;11/11/2010&quot;,&#xd;
+			&quot;isIHFEnrollingMAC&quot;: &quot;Y&quot;,&#xd;
+			&quot;businessRegistrationType&quot;: &quot;Proprietary&quot;&#xd;
+		},&#xd;
+		&quot;psychologistBilling&quot;: {&#xd;
+			&quot;directBilling&quot;: true,&#xd;
+			&quot;confinedOffice&quot;: true,&#xd;
+			&quot;facilityLocation&quot;: true,&#xd;
+			&quot;independentServices&quot;: true,&#xd;
+			&quot;treatsOtherPatients&quot;: true,&#xd;
+			&quot;independentTreatment&quot;: true&#xd;
+		},&#xd;
+		&quot;licenseAndCertification&quot;: {&#xd;
+			&quot;dea&quot;: {&#xd;
+				&quot;deaNumbers&quot;: [{&#xd;
+						&quot;id&quot;: &quot;61ae6ac4-e9b9-4ce3-bb0c-725cb826808a&quot;,&#xd;
+						&quot;_nrpm&quot;: {&#xd;
+							&quot;id&quot;: 3&#xd;
+						},&#xd;
+						&quot;number&quot;: &quot;D22931&quot;,&#xd;
+						&quot;stateIssued&quot;: &quot;PA&quot;,&#xd;
+						&quot;effectiveDate&quot;: &quot;05/25/1999&quot;,&#xd;
+						&quot;expirationDate&quot;: &quot;05/25/2009&quot;&#xd;
+					},&#xd;
+					{&#xd;
+						&quot;id&quot;: &quot;212600ef-bd99-4bac-9f52-f9193e72643c&quot;,&#xd;
+						&quot;_nrpm&quot;: {&#xd;
+							&quot;id&quot;: 4&#xd;
+						},&#xd;
+						&quot;number&quot;: &quot;D87834&quot;,&#xd;
+						&quot;stateIssued&quot;: &quot;PA&quot;,&#xd;
+						&quot;effectiveDate&quot;: &quot;05/25/2009&quot;,&#xd;
+						&quot;expirationDate&quot;: &quot;05/25/2019&quot;&#xd;
+					}&#xd;
+				]&#xd;
+			},&#xd;
+			&quot;license&quot;: {&#xd;
+				&quot;licenseNumbers&quot;: [{&#xd;
+						&quot;id&quot;: &quot;fdd19071-1552-4b8d-aa38-c0371bba7cb0&quot;,&#xd;
+						&quot;_nrpm&quot;: {&#xd;
+							&quot;id&quot;: 5&#xd;
+						},&#xd;
+						&quot;number&quot;: &quot;17899&quot;,&#xd;
+						&quot;stateIssued&quot;: &quot;PA&quot;,&#xd;
+						&quot;effectiveDate&quot;: &quot;01/01/2000&quot;,&#xd;
+						&quot;expirationDate&quot;: &quot;01/01/2010&quot;&#xd;
+					},&#xd;
+					{&#xd;
+						&quot;id&quot;: &quot;d951a285-a1dc-4f4a-a029-5ddd55ac1fa4&quot;,&#xd;
+						&quot;_nrpm&quot;: {&#xd;
+							&quot;id&quot;: 6&#xd;
+						},&#xd;
+						&quot;number&quot;: &quot;73001&quot;,&#xd;
+						&quot;stateIssued&quot;: &quot;PA&quot;,&#xd;
+						&quot;effectiveDate&quot;: &quot;01/01/2010&quot;,&#xd;
+						&quot;expirationDate&quot;: &quot;01/01/2020&quot;&#xd;
+					}&#xd;
+				]&#xd;
+			},&#xd;
+			&quot;certification&quot;: {&#xd;
+				&quot;certificationNumbers&quot;: [{&#xd;
+						&quot;id&quot;: &quot;40662dc9-aae1-4fb0-9e00-842636875d6b&quot;,&#xd;
+						&quot;_nrpm&quot;: {&#xd;
+							&quot;id&quot;: 1&#xd;
+						},&#xd;
+						&quot;number&quot;: &quot;PA293832&quot;,&#xd;
+						&quot;stateIssued&quot;: &quot;PA&quot;,&#xd;
+						&quot;effectiveDate&quot;: &quot;05/25/1999&quot;,&#xd;
+						&quot;expirationDate&quot;: &quot;05/25/2009&quot;&#xd;
+					},&#xd;
+					{&#xd;
+						&quot;id&quot;: &quot;5ee6897f-4f9b-481b-9d59-c8dcd0888e1c&quot;,&#xd;
+						&quot;_nrpm&quot;: {&#xd;
+							&quot;id&quot;: 2&#xd;
+						},&#xd;
+						&quot;number&quot;: &quot;PA753272&quot;,&#xd;
+						&quot;stateIssued&quot;: &quot;PA&quot;,&#xd;
+						&quot;effectiveDate&quot;: &quot;05/25/2009&quot;,&#xd;
+						&quot;expirationDate&quot;: &quot;12/31/9999&quot;&#xd;
+					},&#xd;
+					{&#xd;
+						&quot;id&quot;: &quot;7ef69306-bb9b-4d4f-b43a-823456b5c29c&quot;,&#xd;
+						&quot;_nrpm&quot;: {&#xd;
+							&quot;id&quot;: 10&#xd;
+						},&#xd;
+						&quot;number&quot;: &quot;PA293832&quot;,&#xd;
+						&quot;stateIssued&quot;: &quot;PA&quot;,&#xd;
+						&quot;effectiveDate&quot;: &quot;05/25/1999&quot;&#xd;
+					}&#xd;
+				]&#xd;
+			}&#xd;
+		},&#xd;
+		&quot;legal&quot;: {&#xd;
+			&quot;legalActions&quot;: [],&#xd;
+			&quot;adverseLegalActionImposed&quot;: &quot;N&quot;&#xd;
+		},&#xd;
+		&quot;nursePractitioners&quot;: {&#xd;
+			&quot;skilledNursingFacilities&quot;: [{&#xd;
+					&quot;id&quot;: &quot;4b3f1ac8-159f-4cdd-ae47-a7bfc451c92e&quot;,&#xd;
+					&quot;name&quot;: &quot;Skilled Nursing Facility One&quot;,&#xd;
+					&quot;_nrpm&quot;: {&#xd;
+						&quot;id&quot;: 31&#xd;
+					},&#xd;
+					&quot;email&quot;: &quot;test@contact.data&quot;,&#xd;
+					&quot;taxId&quot;: &quot;123456789&quot;,&#xd;
+					&quot;address&quot;: {&#xd;
+						&quot;city&quot;: &quot;Charleston&quot;,&#xd;
+						&quot;state&quot;: &quot;SC&quot;,&#xd;
+						&quot;country&quot;: &quot;United States&quot;,&#xd;
+						&quot;zipCode&quot;: &quot;12345+1234&quot;,&#xd;
+						&quot;address1&quot;: &quot;123 Test Street&quot;,&#xd;
+						&quot;address2&quot;: &quot;Suite 2&quot;&#xd;
+					},&#xd;
+					&quot;phoneExt&quot;: &quot;54321&quot;,&#xd;
+					&quot;faxNumber&quot;: &quot;123-456-7890&quot;,&#xd;
+					&quot;phoneNumber&quot;: &quot;098-765-4321&quot;,&#xd;
+					&quot;effectiveDate&quot;: &quot;12/31/2001&quot;,&#xd;
+					&quot;expirationDate&quot;: &quot;12/31/2011&quot;&#xd;
+				},&#xd;
+				{&#xd;
+					&quot;id&quot;: &quot;311d5324-9627-4ba2-9ac8-6d2ad504e6c8&quot;,&#xd;
+					&quot;name&quot;: &quot;Skilled Nursing Facility Two&quot;,&#xd;
+					&quot;_nrpm&quot;: {&#xd;
+						&quot;id&quot;: 30&#xd;
+					},&#xd;
+					&quot;email&quot;: &quot;test@contact.info&quot;,&#xd;
+					&quot;taxId&quot;: &quot;987654321&quot;,&#xd;
+					&quot;address&quot;: {&#xd;
+						&quot;city&quot;: &quot;Charleston&quot;,&#xd;
+						&quot;state&quot;: &quot;SC&quot;,&#xd;
+						&quot;country&quot;: &quot;United States&quot;,&#xd;
+						&quot;zipCode&quot;: &quot;54321+4321&quot;,&#xd;
+						&quot;address1&quot;: &quot;321 Test Street&quot;,&#xd;
+						&quot;address2&quot;: &quot;Suite 2&quot;&#xd;
+					},&#xd;
+					&quot;phoneExt&quot;: &quot;12345&quot;,&#xd;
+					&quot;faxNumber&quot;: &quot;098-765-4321&quot;,&#xd;
+					&quot;phoneNumber&quot;: &quot;123-456-7890&quot;,&#xd;
+					&quot;effectiveDate&quot;: &quot;12/31/2011&quot;,&#xd;
+					&quot;expirationDate&quot;: &quot;12/31/2021&quot;&#xd;
+				}&#xd;
+			],&#xd;
+			&quot;skilledNursingFacilitiesProvided&quot;: true&#xd;
+		},&#xd;
+		&quot;managers&quot;: {&#xd;
+			&quot;managers&quot;: [{&#xd;
+				&quot;id&quot;: &quot;3f26be80-d214-4bf6-b46f-bc51876ba5db&quot;,&#xd;
+				&quot;npi&quot;: &quot;4444444444&quot;,&#xd;
+				&quot;ssn&quot;: &quot;222-28-8888&quot;,&#xd;
+				&quot;name&quot;: {&#xd;
+					&quot;last&quot;: &quot;Name&quot;,&#xd;
+					&quot;first&quot;: &quot;First Name&quot;,&#xd;
+					&quot;suffix&quot;: &quot;Sr.&quot;,&#xd;
+					&quot;middleInitial&quot;: &quot;L&quot;&#xd;
+				},&#xd;
+				&quot;ptan&quot;: &quot;777777777&quot;,&#xd;
+				&quot;type&quot;: &quot;Individual&quot;,&#xd;
+				&quot;legal&quot;: {&#xd;
+					&quot;adverseLegalActionImposed&quot;: &quot;N&quot;&#xd;
+				},&#xd;
+				&quot;birthDate&quot;: &quot;11/11/1970&quot;,&#xd;
+				&quot;birthState&quot;: &quot;AL&quot;,&#xd;
+				&quot;birthCountry&quot;: &quot;United States&quot;,&#xd;
+				&quot;effectiveDate&quot;: &quot;03/22/2015&quot;,&#xd;
+				&quot;associationTypes&quot;: {&#xd;
+					&quot;isManagingEmployee&quot;: true&#xd;
+				},&#xd;
+				&quot;individualAcquired&quot;: {&#xd;
+					&quot;effectiveDate&quot;: &quot;11/11/2010&quot;&#xd;
+				}&#xd;
+			}]&#xd;
+		}&#xd;
+	}&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">application-api-${envt}.apps.pecos-staging.cpi.cmscloud.local</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/applications</stringProp>
+          <stringProp name="HTTPSampler.method">PUT</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Status Code Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">1</intProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Request - Application_submission" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+	&quot;event_id&quot;: &quot;01d1fa63-7120-426d-9dac-d4cafac62d0f&quot;,&#xd;
+	&quot;application_event_type&quot;: &quot;SUBMITTED&quot;,&#xd;
+	&quot;application_metadata&quot;: {&#xd;
+		&quot;application_type&quot;: &quot;855I&quot;&#xd;
+	},&#xd;
+	&quot;event_timestamp&quot;: 1538154220439,&#xd;
+	&quot;entity_id&quot;: &quot;${entityId}&quot;,&#xd;
+	&quot;application_id&quot;: &quot;${applicationId}&quot;&#xd;
+}&#xd;
+	</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">application-api-${envt}.apps.pecos-staging.cpi.cmscloud.local</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">application-events</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Status Code Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">1</intProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">event_id</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.event_id</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+            <stringProp name="JSONPostProcessor.defaultValues">No_Default</stringProp>
+            <stringProp name="Scope.variable">trackingid</stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="ReviewApp- afterSubmission_get" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">case-management-api-${envt}.apps.pecos-staging.cpi.cmscloud.local</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/casemanagement/findByApplicationId/${applicationId}</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Status Code Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">1</intProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor" enabled="false">
+            <stringProp name="JSONPostProcessor.referenceNames">currentStatus1</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.currentEventState</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers">0</stringProp>
+            <stringProp name="JSONPostProcessor.defaultValues">No_Default</stringProp>
+            <stringProp name="Scope.variable">trackingid</stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="false">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-26093087">RECEIVED</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">1</intProp>
+            <stringProp name="Assertion.scope">variable</stringProp>
+            <stringProp name="Scope.variable">currentStatus1</stringProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">applicationEventId</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$..applicationEventId</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="verification" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+  &quot;applicationId&quot;: &quot;${applicationId}&quot;,&#xd;
+  &quot;applicationEventId&quot;: &quot;${event_id}&quot;,&#xd;
+  &quot;submissionReason&quot;: &quot;INITIAL_ENROLLMENT&quot;,&#xd;
+  &quot;formType&quot;: &quot;855I&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">verification-attestation-api-${envt}.apps.pecos-staging.cpi.cmscloud.local/</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">verifications</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Status Code Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">1</intProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">verificationId</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.verificationId</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers">0</stringProp>
+            <stringProp name="JSONPostProcessor.defaultValues">No_Default</stringProp>
+            <stringProp name="Scope.variable">trackingid</stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GetAllVerificationItems" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">verification-attestation-api-${envt}.apps.pecos-staging.cpi.cmscloud.local/</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">verifications/${verificationId}</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">X-User-ID</stringProp>
+                <stringProp name="Header.value">1</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Accept-Charset</stringProp>
+                <stringProp name="Header.value">UTF-8</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Status Code Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">1</intProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor_Billing_business" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">BillingInfoVerificationItemId</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$..[?(@.sectionDescription ==&apos;Billing Agency Information&apos; &amp;&amp; @.typeDescription==&apos;Medicare Exclusion Database (MED) File&apos;)].verificationItemId</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers">0</stringProp>
+            <stringProp name="JSONPostProcessor.defaultValues">NA</stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor_Billing_Indv" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">BillingInfoVerificationItemId_indv</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$..[?(@.sectionDescription ==&apos;Billing Agency Information&apos; &amp;&amp; @.typeDescription==&apos;Medicare Exclusion Database (MED) File&apos;)].verificationItemId</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+            <stringProp name="JSONPostProcessor.defaultValues">NA</stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GetVerificationItem_Billing_Org" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">verification-attestation-api-${envt}.apps.pecos-staging.cpi.cmscloud.local/</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">verifications/item/${BillingInfoVerificationItemId}</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">X-User-ID</stringProp>
+                <stringProp name="Header.value">1</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Accept-Charset</stringProp>
+                <stringProp name="Header.value">UTF-8</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Status Code Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">1</intProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="JSON Assertion_MED_Billing_business" enabled="true">
+            <stringProp name="JSON_PATH">$..[?(@.sectionDescription ==&apos;Billing Agency Information&apos; &amp;&amp; @.typeDescription==&apos;Medicare Exclusion Database (MED) File&apos;)].data</stringProp>
+            <stringProp name="EXPECTED_VALUE">{&quot;medfile&quot;:{&quot;business&quot;:{&quot;legalBusinessName&quot;:&quot;Legal Business Name (&quot;,&quot;doingBusinessAs&quot;:&quot;Doing Business As&quot;,&quot;tin&quot;:&quot;111111111&quot;}}}</stringProp>
+            <boolProp name="JSONVALIDATION">true</boolProp>
+            <boolProp name="EXPECT_NULL">false</boolProp>
+            <boolProp name="INVERT">false</boolProp>
+            <boolProp name="ISREGEX">false</boolProp>
+          </JSONPathAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GetVerificationItem_MED_indv" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">verification-attestation-api-${envt}.apps.pecos-staging.cpi.cmscloud.local/</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">verifications/item/${BillingInfoVerificationItemId_indv}</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">X-User-ID</stringProp>
+                <stringProp name="Header.value">1</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Accept-Charset</stringProp>
+                <stringProp name="Header.value">UTF-8</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Status Code Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">1</intProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="JSON Assertion_MED_Billing_indv" enabled="true">
+            <stringProp name="JSON_PATH">$..[?(@.sectionDescription ==&apos;Billing Agency Information&apos; &amp;&amp; @.typeDescription==&apos;Medicare Exclusion Database (MED) File&apos;)].data</stringProp>
+            <stringProp name="EXPECTED_VALUE">{&quot;medfile&quot;:{&quot;individual&quot;:{&quot;name&quot;:{&quot;first&quot;:&quot;First Name&quot;,&quot;middleInitial&quot;:&quot;L&quot;,&quot;last&quot;:&quot;Name&quot;},&quot;doingBusinessAs&quot;:&quot;Practive Location Name&quot;,&quot;ssn&quot;:&quot;111-11-1111&quot;,&quot;birthDate&quot;:&quot;11\/11\/1970&quot;}}}</stringProp>
+            <boolProp name="JSONVALIDATION">true</boolProp>
+            <boolProp name="EXPECT_NULL">false</boolProp>
+            <boolProp name="INVERT">false</boolProp>
+            <boolProp name="ISREGEX">false</boolProp>
+          </JSONPathAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Disposition" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+ &quot;applicationEventId&quot;:&quot;${event_id}&quot; ,&#xd;
+ &quot;applicationId&quot;: &quot;${applicationId}&quot;,&#xd;
+ &quot;dispositionReasonIds&quot;: [&#xd;
+   5&#xd;
+ ],&#xd;
+ &quot;dispositionStatusId&quot;: 1,&#xd;
+ &quot;note&quot;: &quot;xx&quot;,&#xd;
+ &quot;pecosUserId&quot;: 2,&#xd;
+ &quot;timestamp&quot;: &quot;2018-09-26T16:28:53Z&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">verification-attestation-api-${envt}.apps.pecos-staging.cpi.cmscloud.local</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/dispositions</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name"></stringProp>
+                <stringProp name="Header.value"></stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">X-User-ID</stringProp>
+                <stringProp name="Header.value">1234</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Status Code Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49587">201</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">1</intProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="true">
+          <boolProp name="displayJMeterProperties">true</boolProp>
+          <boolProp name="displayJMeterVariables">true</boolProp>
+          <boolProp name="displaySystemProperties">false</boolProp>
+        </DebugSampler>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>

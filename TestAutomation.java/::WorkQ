@@ -1,0 +1,299 @@
+//WorkQ
+
+package framework.pages;
+
+import com.coveros.selenified.Locator;
+import com.coveros.selenified.application.App;
+import com.coveros.selenified.element.Element;
+
+
+/*
+ * @author Sukanya
+ * WorkQ page
+ */
+
+public class WorkQ {
+
+  private final Element linkDev;
+  private final Element linkWorkQueue;
+  private final Element verifyTableWorkQueue;
+  private final Element keywordString;
+  private final Element quickFilters;
+  private final Element noFilters;
+  private final Element unassignedFilters;
+  private final Element assignedToMeFilters;
+  private final Element allTasksFilters;
+  private final Element closedFilters;
+  private final Element openFilters;
+  private final Element advancedFilters;
+  private final Element closedStatusCheck;
+  private final Element modalClearAll;
+  private final Element clearAll;
+  private final Element cancelFilterModal;
+  private final Element buttonSearch;
+  private final Element verifySelectAll;
+  private final Element select855B;
+  private final Element select855I;
+  private final Element select855R;
+  private final Element statusRouted;
+  private final Element statusInReview;
+  private final Element statusInProgress;
+  private final Element statusCloned;
+  private final Element statusClosed;
+  private final Element applyFilter;
+  private final Element assigneeButton;
+  private final Element assigneeSearchString;
+  private final Element assigneeSearch;
+  private final Element assigneeCancel;
+  private final Element selectRow;
+  private final Element checkStatusColumn;
+  private final Element casePreview;
+  private final Element openAppOverview;
+  private final Element resultsReturned;
+
+  private final App app;
+
+  public WorkQ(App app) {
+
+    this.app = app;
+
+    //workQ link from navigation page
+    linkDev = app.newElement(Locator.LINKTEXT, "linkDev Links");
+    linkWorkQueue = app.newElement(Locator.PARTIALLINKTEXT, "workWork Queue");
+    //WorkQ table elements
+    verifyTableWorkQueue = app.newElement(Locator.XPATH, "//table[1]");
+    verifySelectAll = verifyTableWorkQueue.findChild(app.newElement(Locator.NAME, "dt-toggle-select-all"));
+    buttonSearch = app.newElement(Locator.ID, "wq-search-btn");
+    clearAll = app.newElement(Locator.XPATH, "//button[contains(text(),'Clear Filters')]");
+    selectRow = app.newElement(Locator.XPATH, "//tr[1]//td[1]//div[1]");
+    assigneeButton = app.newElement(Locator.XPATH, "//button[contains(text(),'Assignee')]");
+    assigneeSearchString = app.newElement(Locator.NAME, "assigneeName");
+    assigneeSearch = app.newElement(Locator.ID, "wq-assignment-btn");
+    assigneeCancel = app.newElement(Locator.XPATH, "//button[contains(text(),'Cancel')]");
+    casePreview = app.newElement(Locator.ID, "wq-preview-btn");
+    openAppOverview = app.newElement(Locator.LINKTEXT, "Application Overview");
+    checkStatusColumn = app.newElement(Locator.XPATH, "//tr[1]//td[5]//span[1]");
+    resultsReturned = app.newElement(Locator.XPATH, "//caption[@class='ds-c-datatable__details']");
+    //quick Filters elements
+    quickFilters = app.newElement(Locator.ID, "ds-c-dropdown-1");
+    noFilters = app.newElement(Locator.XPATH, "(//button[@type='button'])", 1);
+    unassignedFilters = app.newElement(Locator.XPATH, "(//button[@type='button'])", 2);
+    assignedToMeFilters = app.newElement(Locator.XPATH, "(//button[@type='button'])", 3);
+    allTasksFilters = app.newElement(Locator.XPATH, "(//button[@type='button'])", 4);
+    closedFilters = app.newElement(Locator.XPATH, "(//button[@type='button'])", 5);
+    openFilters = app.newElement(Locator.XPATH, "(//button[@type='button'])", 6);
+    //advanced Filters elements
+    advancedFilters = app.newElement(Locator.XPATH, "//button[starts-with(text(), 'Filters')]");
+    modalClearAll = app.newElement(Locator.XPATH, "//button[contains(text(),'<Clear All Filters>')]");
+    applyFilter = app.newElement(Locator.ID, "applyFilterBtn");
+    cancelFilterModal = app.newElement(Locator.XPATH, "//button[contains(text(),'Cancel')]");
+    //keyword search
+    keywordString = app.newElement(Locator.NAME, "keyword");
+    //Status
+    closedStatusCheck = app.newElement(Locator.XPATH, "//input[@value='CLOSED']");
+    statusRouted = app.newElement(Locator.XPATH, "//span[contains(text(),'Application Routed')]");
+    statusInReview = app.newElement(Locator.XPATH, "//span[contains(text(),'Application In Review')]");
+    statusInProgress = app.newElement(Locator.XPATH, "//span[contains(text(),'Application In Progress')]");
+    statusCloned = app.newElement(Locator.XPATH, "//span[contains(text(),'Application Cloned')]");
+    statusClosed = app.newElement(Locator.XPATH, "//span[contains(text(),'Application Closed')]");
+    //form type
+    select855I = app.newElement(Locator.XPATH, "//span[contains(text(),'855I: Physician and Non-Physician Practitioners')]");
+    select855B = app.newElement(Locator.XPATH, "//span[contains(text(),'855B: Clinics, Group Practices, and Certain Other ')]");
+    select855R = app.newElement(Locator.XPATH, "//span[contains(text(),'855R: Reassignment of Medicare Benefits')]");
+  }
+
+  public void navigateToWorkQueue() {
+    linkDev.waitForState().enabled(30);
+    linkDev.click();
+    linkWorkQueue.waitForState().enabled(30);
+    linkWorkQueue.click();
+  }
+
+  public void verifyWorkQueuePage() {
+    linkWorkQueue.waitForState().enabled(30);
+    verifyTableWorkQueue.waitForState().enabled(60);
+    verifySelectAll.assertState().enabled();
+    verifyTableWorkQueue.assertEquals().text(0, 1, "Work Type");
+    verifyTableWorkQueue.assertEquals().text(0, 2, "Assignee");
+    verifyTableWorkQueue.assertEquals().text(0, 3, "Providers/Organizations");
+    verifyTableWorkQueue.assertEquals().text(0, 4, "Status");
+    verifyTableWorkQueue.assertEquals().text(0, 5, "Received");
+    verifyTableWorkQueue.assertEquals().text(0, 6, "Action");
+
+  }
+
+  public void clickOnQuickFilters() {
+    linkWorkQueue.waitForState().enabled(30);
+    quickFilters.waitForState().enabled(60);
+    quickFilters.click();
+  }
+
+  public void selectNoFiltersAndAssertURL(String baseURL) {
+    linkWorkQueue.waitForState().enabled(30);
+    noFilters.click();
+    app.azzert().urlEquals(baseURL + "work-queue/#/");
+
+  }
+
+  public void selectUnassignedFiltersAndAssertURL(String baseURL) {
+    linkWorkQueue.waitForState().enabled(30);
+    unassignedFilters.click();
+    app.azzert().urlEquals(baseURL + "work-queue/#/?assignedToUserIds=null");
+
+  }
+
+  public void selectAssignedToMeFiltersAndAssertURL(String baseURL, String userId) {
+    linkWorkQueue.waitForState().enabled(30);
+    assignedToMeFilters.click();
+    app.azzert().urlEquals(baseURL + "work-queue/#/?assignedToUserIds=" + userId);
+  }
+
+  public void selectAllTasksFiltersAndAssertURL(String baseURL, int contractId) {
+    linkWorkQueue.waitForState().enabled(30);
+    allTasksFilters.click();
+    app.azzert().urlEquals(baseURL + "work-queue/#/?contractId=" + contractId);
+
+  }
+
+  public void selectClosedFiltersAndAssertURL(String baseURL) {
+    closedFilters.click();
+    app.azzert().urlEquals(baseURL + "work-queue/#/?statuses=CLOSED");
+    int results = verifyTableWorkQueue.get().numOfTableRows();
+    advancedFilters.click();
+    modalClearAll.waitForState().enabled(60);
+    closedStatusCheck.assertState().checked();
+    cancelFilterModal.click();
+    for (int rnum = 1; rnum < results; rnum++) {
+      Element row = verifyTableWorkQueue.get().tableRow(rnum);
+      row.assertContains().text("Closed");
+    }
+  }
+
+  public void selectOpenFiltersAndAssertURL(String baseURL) {
+    linkWorkQueue.waitForState().enabled(30);
+    openFilters.click();
+    app.azzert().urlEquals(baseURL + "work-queue/#/?statuses=IN_PROGRESS,ROUTED,RECEIVED,ASSIGNED,IN_REVIEW");
+    advancedFilters.click();
+    modalClearAll.waitForState().enabled(60);
+    closedStatusCheck.assertState().notChecked();
+    cancelFilterModal.click();
+    clearAll.click();
+  }
+
+  public void setKeywordStringAndAssertURL(String baseURL, String keyword) {
+    linkWorkQueue.waitForState().enabled(30);
+    keywordString.type(keyword);
+    buttonSearch.click();
+    app.azzert().urlEquals(baseURL + "work-queue/#/?keyword=" + keyword);
+  }
+
+  public void setFormType855B(String baseURL) {
+    linkWorkQueue.waitForState().enabled(30);
+    advancedFilters.click();
+    select855B.waitForState().present(30);
+    select855B.assertState().notChecked();
+    select855B.click();
+    applyFilter.click();
+
+  }
+
+  public void setFormType855IAndAssert(String baseURL, String keyword, String formtType) {
+    linkWorkQueue.waitForState().enabled(30);
+    advancedFilters.click();
+    select855I.waitForState().present(30);
+    select855I.assertState().notChecked();
+    select855I.click();
+    applyFilter.click();
+    app.azzert().urlEquals(baseURL + "work-queue/#/?keyword=" + keyword + "&types=" + formtType);
+  }
+
+  public void setStatusInProgressAndAssert(String baseURL) {
+    linkWorkQueue.waitForState().enabled(30);
+    verifyTableWorkQueue.waitForState().enabled(60);
+    advancedFilters.click();
+    statusInProgress.waitForState().present(30);
+    statusInProgress.assertState().notChecked();
+    statusInProgress.click();
+    applyFilter.click();
+    app.azzert().urlEquals(baseURL + "work-queue/#/?statuses=IN_PROGRESS");
+  }
+
+  public void setStatusRoutedAndAssert(String baseURL) {
+    verifyTableWorkQueue.waitForState().enabled(60);
+    advancedFilters.click();
+    statusRouted.waitForState().present(30);
+    statusRouted.assertState().notChecked();
+    statusRouted.click();
+    applyFilter.click();
+    app.azzert().urlEquals(baseURL + "work-queue/#/?statuses=ROUTED");
+  }
+
+  public void setStatusInReviewAndAssert(String baseURL) {
+    verifyTableWorkQueue.waitForState().enabled(60);
+    advancedFilters.click();
+    statusInReview.waitForState().present(30);
+    statusInReview.assertState().notChecked();
+    statusInReview.click();
+    applyFilter.click();
+    app.azzert().urlEquals(baseURL + "work-queue/#/?statuses=IN_REVIEW");
+  }
+
+  public void setStatusCloned(String baseURL) {
+    verifyTableWorkQueue.waitForState().enabled(60);
+    advancedFilters.click();
+    statusCloned.waitForState().present(30);
+    statusCloned.assertState().notChecked();
+    statusCloned.click();
+    applyFilter.click();
+  }
+
+  public void setStatusClosed(String baseURL) {
+    verifyTableWorkQueue.waitForState().enabled(60);
+    advancedFilters.click();
+    statusClosed.waitForState().present(30);
+    statusClosed.assertState().notChecked();
+    statusClosed.click();
+    applyFilter.click();
+  }
+
+  public void statusKeywordSearchAndAssertURL(String baseURL, String status) {
+    advancedFilters.waitForState().displayed(60);
+    keywordString.type(status);
+    buttonSearch.click();
+    app.azzert().urlEquals(baseURL + "work-queue/#/?keyword=" + status);
+  }
+
+  public int isRowReturned() {
+    verifyTableWorkQueue.waitForState().enabled(30);
+    return verifyTableWorkQueue.get().numOfTableRows();
+  }
+
+  public void columnStatusAssert(String status) {
+    checkStatusColumn.waitForState().displayed(60);
+    checkStatusColumn.assertContains().text(status);
+  }
+
+  public void casePreviewToAppOverview() {
+    verifyTableWorkQueue.waitForState().enabled(60);
+    casePreview.waitForState().displayed(60);
+    casePreview.click();
+    openAppOverview.waitForState().enabled(60);
+    openAppOverview.click();
+  }
+
+  public void clearAllFilters(String status) {
+    verifyTableWorkQueue.waitForState().enabled(60);
+    clearAll.click();
+  }
+
+  public void setManualAssignmentAndAssertURL(String baseURL, String assignee) {
+    verifyTableWorkQueue.waitForState().enabled(60);
+    selectRow.waitForState().enabled(60);
+    selectRow.click();
+    assigneeButton.waitForState().present();
+    assigneeButton.click();
+    assigneeSearchString.type(assignee);
+    assigneeSearch.click();
+    assigneeCancel.click();
+  }
+}

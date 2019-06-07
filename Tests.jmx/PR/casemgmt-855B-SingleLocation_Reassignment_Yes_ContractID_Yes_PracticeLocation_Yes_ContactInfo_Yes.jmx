@@ -1,0 +1,1125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.1 r1853635">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Routings" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="TESTING_URL" elementType="Argument">
+            <stringProp name="Argument.name">TESTING_URL</stringProp>
+            <stringProp name="Argument.value">page-service-staging.apps.pecos-staging.cpi.cmscloud.local</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+      </Arguments>
+      <hashTree/>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="855B-SingleLocation_Reassignment_Yes_ContractID_Yes_PracticeLocation_Yes_ContactInfo_Yes" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1538652557000</longProp>
+        <longProp name="ThreadGroup.end_time">1536843690000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay">10</stringProp>
+        <boolProp name="ThreadGroup.delayedStart">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="casemgmt_855B_SL_Valid_Group_Yes_Case_Mgmt_CreateCase" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+  &quot;enrollmentId&quot;: &quot;10&quot;,&#xd;
+  &quot;entityId&quot;: &quot;d7cedd9c-4637-7aa3-0ed2-1689077296e3&quot;,&#xd;
+  &quot;reason&quot;: &quot;INITIAL_ENROLLMENT&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${TESTING_URL}/api/case-management</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">casemanagement/d7cedd9c-4637-7aa3-0ed2-1689077296e3</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response StatusCode Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49587">201</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">1</intProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">applicationId</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.applicationId</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+            <stringProp name="JSONPostProcessor.defaultValues">No_Default</stringProp>
+            <stringProp name="Scope.variable">trackingid</stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Text Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="1870512352">trackingNumber</stringProp>
+              <stringProp name="31430900">eventType</stringProp>
+              <stringProp name="-2129778896">startDate</stringProp>
+              <stringProp name="-800639515">applicationEventId</stringProp>
+              <stringProp name="-23960743">pecoseUserId</stringProp>
+              <stringProp name="598371679">createdBy</stringProp>
+              <stringProp name="951530617">content</stringProp>
+              <stringProp name="1917896816">currentEventState</stringProp>
+              <stringProp name="-1695810125">contractJurisdiction</stringProp>
+              <stringProp name="-1011352949">applicationId</stringProp>
+              <stringProp name="-2102099874">entityId</stringProp>
+              <stringProp name="-580336490">verificationId</stringProp>
+              <stringProp name="3575610">type</stringProp>
+              <stringProp name="-892481550">status</stringProp>
+              <stringProp name="-2129778896">startDate</stringProp>
+              <stringProp name="-1607727319">endDate</stringProp>
+              <stringProp name="1092481112">pecosUserId</stringProp>
+              <stringProp name="-987494927">provider</stringProp>
+              <stringProp name="-1694759682">specialty</stringProp>
+              <stringProp name="1575888299">submittalReason</stringProp>
+              <stringProp name="1930260974">providerRepresentative</stringProp>
+              <stringProp name="-107037889">enrollmentId</stringProp>
+              <stringProp name="0"></stringProp>
+              <stringProp name="0"></stringProp>
+              <stringProp name="0"></stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">caseId</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.trackingNumber</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+            <stringProp name="JSONPostProcessor.defaultValues">No_Default</stringProp>
+            <stringProp name="Scope.variable">trackingid</stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="casemgmt_855B_SL_Valid_Group_Yes-Applicationtype_update" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{ &quot;form_type&quot;: &quot;855B&quot;, &quot;reason_type&quot;: &quot;INITIAL_ENROLLMENT&quot;,&#xd;
+&quot;optional_sections&quot;: [&quot;855B/ELECTRONICS_FUNDS_TRANSFER&quot;,&#xd;
+		&quot;855B/REASSIGNMENT_EMPLOYMENT_RELATIONSHIPS&quot;&#xd;
+	],&#xd;
+	&quot;optional_subsections&quot;: [&quot;855B/IDENTIFYING_INFORMATION/CLINICAL_PSYCHOLOGISTS&quot;,&#xd;
+		&quot;855B/IDENTIFYING_INFORMATION/PSYCHOLOGISTS_BILLING_INDEPENDENTLY&quot;,&#xd;
+		&quot;855B/IDENTIFYING_INFORMATION/PT_OT_PRIVATE_PRACTICE&quot;,&#xd;
+		&quot;855B/IDENTIFYING_INFORMATION/NURSE_PRACTITIONERS_CERTIFIED_SPECIALISTS&quot;,&#xd;
+		&quot;855B/IDENTIFYING_INFORMATION/ACCREDITING_ORGANIZATIONS&quot;,&#xd;
+		&quot;855B/BUSINESS_INFORMATION/PRIVATE_PRACTICE_BUSINESS_INFORMATION&quot;,&#xd;
+		&quot;855B/BUSINESS_INFORMATION/SOLE_PROPRIETORSHIP&quot;, &#xd;
+		&quot;855B/BUSINESS_INFORMATION/UNIQUE_CIRCUMSTANCES&quot;, &#xd;
+		&quot;855B/PRACTICE_LOCATION_INFORMATION/RENDERING_SERVICES_IN_PATIENTS_HOMES&quot;,&#xd;
+		&quot;855B/BILLING_AGENCY/BILLING_AGENCY_INFORMATION&quot;&#xd;
+	]&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${TESTING_URL}/api/application</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">initialQuestionnaire/${applicationId}</stringProp>
+          <stringProp name="HTTPSampler.method">PUT</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Status Code Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">1</intProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="casemgmt_855B_SL_Valid_Group_Yes-UpdateAppMetaData" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+	&quot;entity_id&quot;: &quot;829bbcfc-fd1c-4572-a106-d71ccff1f04d&quot;,&#xd;
+	&quot;application_id&quot;: &quot;${applicationId}&quot;,&#xd;
+	  &quot;application_metadata&quot;: {&#xd;
+        &quot;enrollment_id&quot;: &quot;${enrollmentId}&quot;,&#xd;
+        &quot;application_type&quot;: &quot;855B&quot;,&#xd;
+        &quot;submission_reason&quot;: &quot;REACTIVATION&quot;&#xd;
+    },&#xd;
+    &quot;application_data&quot;: {&#xd;
+        &quot;formType&quot;: &quot;855B&quot;,&#xd;
+        &quot;schemaVersion&quot;: &quot;V1.03&quot;,&#xd;
+        &quot;forms&quot;: {&#xd;
+            &quot;855B&quot;: {&#xd;
+                &quot;IDENTIFYING_INFORMATION&quot;: {&#xd;
+                    &quot;accrediting&quot;: {&#xd;
+                        &quot;items&quot;: [&#xd;
+                            {&#xd;
+                                &quot;id&quot;: &quot;2bf08e69-add8-48d7-a87a-de88e22264d6&quot;,&#xd;
+                                &quot;name&quot;: &quot;ACCREDITATION COMMISSION FOR HEALTHCARE, INC&quot;,&#xd;
+                                &quot;type&quot;: &quot;NUCLEAR MEDICINE&quot;,&#xd;
+                                &quot;_nrpm&quot;: {&#xd;
+                                    &quot;id&quot;: 9,&#xd;
+                                    &quot;enrollmentId&quot;: 1&#xd;
+                                },&#xd;
+                                &quot;effectiveDate&quot;: &quot;12/31/2000&quot;,&#xd;
+                                &quot;expirationDate&quot;: &quot;12/31/2010&quot;&#xd;
+                            },&#xd;
+                            {&#xd;
+                                &quot;id&quot;: &quot;b4d291c5-18ca-44dc-98b4-32b1e4a5297c&quot;,&#xd;
+                                &quot;name&quot;: &quot;ACCREDITATION COMMISSION FOR HEALTHCARE, INC&quot;,&#xd;
+                                &quot;type&quot;: &quot;POSITRON EMISSION TOMOGRAPHY (PET)&quot;,&#xd;
+                                &quot;_nrpm&quot;: {&#xd;
+                                    &quot;id&quot;: 10,&#xd;
+                                    &quot;enrollmentId&quot;: 1&#xd;
+                                },&#xd;
+                                &quot;effectiveDate&quot;: &quot;12/31/2020&quot;,&#xd;
+                                &quot;expirationDate&quot;: &quot;12/31/2010&quot;&#xd;
+                            },&#xd;
+                            {&#xd;
+                                &quot;id&quot;: &quot;4ada4118-e215-4785-bd41-acac1dc00037&quot;,&#xd;
+                                &quot;name&quot;: &quot;ACCREDITATION COMMISSION FOR HEALTHCARE, INC&quot;,&#xd;
+                                &quot;type&quot;: &quot;MAGNETIC RESONANCE IMAGING (MRI)&quot;,&#xd;
+                                &quot;_nrpm&quot;: {&#xd;
+                                    &quot;id&quot;: 7,&#xd;
+                                    &quot;enrollmentId&quot;: 1&#xd;
+                                },&#xd;
+                                &quot;effectiveDate&quot;: &quot;12/31/1980&quot;,&#xd;
+                                &quot;expirationDate&quot;: &quot;12/31/2040&quot;&#xd;
+                            },&#xd;
+                            {&#xd;
+                                &quot;id&quot;: &quot;1c1a8c85-d144-434b-9767-86c790b00ef6&quot;,&#xd;
+                                &quot;name&quot;: &quot;ACCREDITATION COMMISSION FOR HEALTHCARE, INC&quot;,&#xd;
+                                &quot;type&quot;: &quot;COMPUTED TOMOGRAPHY (CT)&quot;,&#xd;
+                                &quot;_nrpm&quot;: {&#xd;
+                                    &quot;id&quot;: 8,&#xd;
+                                    &quot;enrollmentId&quot;: 1&#xd;
+                                },&#xd;
+                                &quot;effectiveDate&quot;: &quot;12/31/1990&quot;,&#xd;
+                                &quot;expirationDate&quot;: &quot;12/31/2050&quot;&#xd;
+                            }&#xd;
+                        ],&#xd;
+                        &quot;enabled&quot;: &quot;Y&quot;&#xd;
+                    },&#xd;
+                    &quot;correspondence&quot;: {&#xd;
+                        &quot;_nrpm&quot;: {&#xd;
+                            &quot;enrollmentId&quot;: 1&#xd;
+                        },&#xd;
+                        &quot;email&quot;: &quot;gmendez1@inova.com&quot;,&#xd;
+                        &quot;phoneExt&quot;: &quot;101&quot;,&#xd;
+                        &quot;faxNumber&quot;: &quot;267-333-1112&quot;,&#xd;
+                        &quot;phoneNumber&quot;: &quot;267-333-1111&quot;,&#xd;
+                        &quot;mailingAddress&quot;: {&#xd;
+                            &quot;city&quot;: &quot;Philadelphia&quot;,&#xd;
+                            &quot;_nrpm&quot;: {&#xd;
+                                &quot;id&quot;: 1&#xd;
+                            },&#xd;
+                            &quot;state&quot;: &quot;PA&quot;,&#xd;
+                            &quot;country&quot;: &quot;United States&quot;,&#xd;
+                            &quot;zipCode&quot;: &quot;19107&quot;,&#xd;
+                            &quot;address1&quot;: &quot;12345 Lee Hwy&quot;,&#xd;
+                            &quot;address2&quot;: &quot;Suite 1000&quot;&#xd;
+                        }&#xd;
+                    }&#xd;
+                },&#xd;
+                &quot;CONTACT_PERSON_INFORMATION&quot;: {&#xd;
+                    &quot;contactInformation&quot;: [&#xd;
+                        {&#xd;
+                            &quot;id&quot;: &quot;b798ddfd-90d2-4033-8d0f-dbca8eec3a9b&quot;,&#xd;
+                            &quot;name&quot;: {&#xd;
+                                &quot;last&quot;: &quot;Smith&quot;,&#xd;
+                                &quot;first&quot;: &quot;Jon&quot;,&#xd;
+                                &quot;suffix&quot;: &quot;MD&quot;,&#xd;
+                                &quot;middleInitial&quot;: &quot;B&quot;&#xd;
+                            },&#xd;
+                            &quot;role&quot;: &quot;RESIDENT AGENT&quot;,&#xd;
+                            &quot;_nrpm&quot;: {&#xd;
+                                &quot;id&quot;: 1&#xd;
+                            },&#xd;
+                            &quot;email&quot;: &quot;jonsmith1@inova.com&quot;,&#xd;
+                            &quot;endDate&quot;: &quot;06/12/2020&quot;,&#xd;
+                            &quot;phoneExt&quot;: &quot;101&quot;,&#xd;
+                            &quot;faxNumber&quot;: &quot;267-555-3334&quot;,&#xd;
+                            &quot;affiliation&quot;: &quot;Affiliated organization 1&quot;,&#xd;
+                            &quot;phoneNumber&quot;: &quot;267-555-3333&quot;,&#xd;
+                            &quot;effectiveDate&quot;: &quot;06/12/2018&quot;,&#xd;
+                            &quot;mailingAddress&quot;: {&#xd;
+                                &quot;city&quot;: &quot;Philadelphia&quot;,&#xd;
+                                &quot;state&quot;: &quot;FL&quot;,&#xd;
+                                &quot;country&quot;: &quot;United States&quot;,&#xd;
+                                &quot;zipCode&quot;: &quot;19107&quot;,&#xd;
+                                &quot;address1&quot;: &quot;333 Chain Bridge Road&quot;,&#xd;
+                                &quot;address2&quot;: &quot;Suite 500&quot;&#xd;
+                            },&#xd;
+                            &quot;primaryContact&quot;: true&#xd;
+                        }&#xd;
+                    ]&#xd;
+                },&#xd;
+                &quot;FINAL_ADVERSE_LEGAL_ACTIONS&quot;: {&#xd;
+                    &quot;legal&quot;: {&#xd;
+                        &quot;legalActions&quot;: [&#xd;
+                            {&#xd;
+                                &quot;id&quot;: &quot;83161ef7-366d-4d14-8bca-bc2221398ac8&quot;,&#xd;
+                                &quot;_nrpm&quot;: {&#xd;
+                                    &quot;id&quot;: 2&#xd;
+                                },&#xd;
+                                &quot;actionBy&quot;: &quot;Long Arm of the Law&quot;,&#xd;
+                                &quot;category&quot;: &quot;FELONY CONVICTION WITHIN 10 YEARS&quot;,&#xd;
+                                &quot;actionDate&quot;: &quot;10/01/2018&quot;,&#xd;
+                                &quot;resolution&quot;: &quot;Resolution of ALA&quot;,&#xd;
+                                &quot;description&quot;: &quot;Felony Action Detail Information...&quot;,&#xd;
+                                &quot;reportedDate&quot;: &quot;10/02/2018&quot;,&#xd;
+                                &quot;effectiveDate&quot;: &quot;10/05/2018&quot;,&#xd;
+                                &quot;expirationDate&quot;: &quot;10/25/2018&quot;&#xd;
+                            },&#xd;
+                            {&#xd;
+                                &quot;id&quot;: &quot;39585b14-4034-4f26-bd56-ba5f666c74fc&quot;,&#xd;
+                                &quot;_nrpm&quot;: {&#xd;
+                                    &quot;id&quot;: 1&#xd;
+                                },&#xd;
+                                &quot;actionBy&quot;: &quot;Long Arm of the Law&quot;,&#xd;
+                                &quot;category&quot;: &quot;MISDEMEANOR CONVICTION WITHIN 10 YEARS&quot;,&#xd;
+                                &quot;actionDate&quot;: &quot;10/01/2018&quot;,&#xd;
+                                &quot;resolution&quot;: &quot;Resolution of ALA&quot;,&#xd;
+                                &quot;description&quot;: &quot;Action Detail Information...&quot;,&#xd;
+                                &quot;reportedDate&quot;: &quot;10/02/2018&quot;,&#xd;
+                                &quot;effectiveDate&quot;: &quot;10/05/2018&quot;,&#xd;
+                                &quot;expirationDate&quot;: &quot;10/25/2018&quot;&#xd;
+                            }&#xd;
+                        ],&#xd;
+                        &quot;adverseLegalActionImposed&quot;: &quot;Y&quot;&#xd;
+                    }&#xd;
+                },&#xd;
+                &quot;PRACTICE_LOCATION_INFORMATION&quot;: {&#xd;
+                    &quot;homeService&quot;: {&#xd;
+                        &quot;locations&quot;: [&#xd;
+                            {&#xd;
+                                &quot;id&quot;: &quot;c6621a44-c4aa-4fc2-b3b1-f5c309ec89db&quot;,&#xd;
+                                &quot;type&quot;: &quot;ZIP Code&quot;,&#xd;
+                                &quot;_nrpm&quot;: {&#xd;
+                                    &quot;id&quot;: 5,&#xd;
+                                    &quot;enrollmentId&quot;: 1&#xd;
+                                },&#xd;
+                                &quot;state&quot;: &quot;SC&quot;,&#xd;
+                                &quot;endDate&quot;: &quot;01/01/2015&quot;,&#xd;
+                                &quot;zipCode&quot;: &quot;12345+1234&quot;,&#xd;
+                                &quot;effectiveDate&quot;: &quot;01/01/2014&quot;&#xd;
+                            },&#xd;
+                            {&#xd;
+                                &quot;id&quot;: &quot;5ef643e9-747f-477e-8ae2-4f2a86e7183a&quot;,&#xd;
+                                &quot;type&quot;: &quot;ZIP Code&quot;,&#xd;
+                                &quot;_nrpm&quot;: {&#xd;
+                                    &quot;id&quot;: 4,&#xd;
+                                    &quot;enrollmentId&quot;: 1&#xd;
+                                },&#xd;
+                                &quot;state&quot;: &quot;SC&quot;,&#xd;
+                                &quot;endDate&quot;: &quot;01/01/2016&quot;,&#xd;
+                                &quot;zipCode&quot;: &quot;12345&quot;,&#xd;
+                                &quot;effectiveDate&quot;: &quot;01/01/2015&quot;&#xd;
+                            },&#xd;
+                            {&#xd;
+                                &quot;id&quot;: &quot;97c88381-c4d7-4c26-942c-99cd1dab9135&quot;,&#xd;
+                                &quot;city&quot;: &quot;Summerville&quot;,&#xd;
+                                &quot;type&quot;: &quot;City/Town&quot;,&#xd;
+                                &quot;_nrpm&quot;: {&#xd;
+                                    &quot;id&quot;: 3,&#xd;
+                                    &quot;enrollmentId&quot;: 1&#xd;
+                                },&#xd;
+                                &quot;state&quot;: &quot;SC&quot;,&#xd;
+                                &quot;endDate&quot;: &quot;01/01/2017&quot;,&#xd;
+                                &quot;effectiveDate&quot;: &quot;01/01/2016&quot;&#xd;
+                            },&#xd;
+                            {&#xd;
+                                &quot;id&quot;: &quot;d9075c39-f4a5-4564-bde8-673d5ff3c7cc&quot;,&#xd;
+                                &quot;type&quot;: &quot;County&quot;,&#xd;
+                                &quot;_nrpm&quot;: {&#xd;
+                                    &quot;id&quot;: 2,&#xd;
+                                    &quot;enrollmentId&quot;: 1&#xd;
+                                },&#xd;
+                                &quot;state&quot;: &quot;SC&quot;,&#xd;
+                                &quot;county&quot;: &quot;PA095&quot;,&#xd;
+                                &quot;endDate&quot;: &quot;01/01/2018&quot;,&#xd;
+                                &quot;effectiveDate&quot;: &quot;01/01/2017&quot;&#xd;
+                            },&#xd;
+                            {&#xd;
+                                &quot;id&quot;: &quot;1da06d80-d7d9-4b0a-ad5a-dcec80b2174a&quot;,&#xd;
+                                &quot;type&quot;: &quot;State&quot;,&#xd;
+                                &quot;_nrpm&quot;: {&#xd;
+                                    &quot;id&quot;: 1,&#xd;
+                                    &quot;enrollmentId&quot;: 1&#xd;
+                                },&#xd;
+                                &quot;state&quot;: &quot;SC&quot;,&#xd;
+                                &quot;endDate&quot;: &quot;01/01/2019&quot;,&#xd;
+                                &quot;effectiveDate&quot;: &quot;01/01/2018&quot;&#xd;
+                            }&#xd;
+                        ],&#xd;
+                        &quot;performsHomeService&quot;: &quot;Y&quot;&#xd;
+                    },&#xd;
+                    &quot;practiceLocation&quot;: {&#xd;
+                        &quot;npis&quot;: [&#xd;
+                            &quot;7772221111&quot;,&#xd;
+                            &quot;7772221111&quot;,&#xd;
+                            &quot;7772221111&quot;&#xd;
+                        ],&#xd;
+                        &quot;ptans&quot;: [&#xd;
+                            &quot;23412&quot;,&#xd;
+                            &quot;23412&quot;,&#xd;
+                            &quot;23412&quot;&#xd;
+                        ],&#xd;
+                        &quot;locations&quot;: [&#xd;
+                            {&#xd;
+                                &quot;id&quot;: &quot;8babb615-6c47-4524-a905-a9936b26dd63&quot;,&#xd;
+                                &quot;clia&quot;: &quot;36D0334668&quot;,&#xd;
+                                &quot;_nrpm&quot;: {&#xd;
+                                    &quot;enrollmentId&quot;: 1&#xd;
+                                },&#xd;
+                                &quot;contact&quot;: {&#xd;
+                                    &quot;email&quot;: &quot;contact@gabmend.com&quot;,&#xd;
+                                    &quot;faxNumber&quot;: &quot;267-700-8800&quot;,&#xd;
+                                    &quot;phoneNumber&quot;: &quot;267-700-8801&quot;&#xd;
+                                },&#xd;
+                                &quot;endDate&quot;: &quot;11/30/2022&quot;,&#xd;
+                                &quot;ptannpi&quot;: [&#xd;
+                                    {&#xd;
+                                        &quot;npi&quot;: &quot;7772221111&quot;,&#xd;
+                                        &quot;ptan&quot;: &quot;23412&quot;,&#xd;
+                                        &quot;_nrpm&quot;: {&#xd;
+                                            &quot;medicareNumberId&quot;: 1&#xd;
+                                        }&#xd;
+                                    },&#xd;
+                                    {&#xd;
+                                        &quot;npi&quot;: &quot;7772221111&quot;,&#xd;
+                                        &quot;ptan&quot;: &quot;23412&quot;,&#xd;
+                                        &quot;_nrpm&quot;: {&#xd;
+                                            &quot;medicareNumberId&quot;: 1&#xd;
+                                        }&#xd;
+                                    }&#xd;
+                                ],&#xd;
+                                &quot;haveClia&quot;: &quot;Y&quot;,&#xd;
+                                &quot;haveFDACert&quot;: &quot;Y&quot;,&#xd;
+                                &quot;locationName&quot;: &quot;Gabriel Mendez&quot;,&#xd;
+                                &quot;locationType&quot;: &quot;Group practice office/clinic&quot;,&#xd;
+                                &quot;effectiveDate&quot;: &quot;12/22/2016&quot;,&#xd;
+                                &quot;mailingAddress&quot;: {&#xd;
+                                    &quot;city&quot;: &quot;Philadelphia&quot;,&#xd;
+                                    &quot;state&quot;: &quot;AK&quot;,&#xd;
+                                    &quot;country&quot;: &quot;United States&quot;,&#xd;
+                                    &quot;zipCode&quot;: &quot;19107&quot;,&#xd;
+                                    &quot;address1&quot;: &quot;100 Jefferson St&quot;,&#xd;
+                                    &quot;address2&quot;: &quot;Suite 130&quot;&#xd;
+                                },&#xd;
+                                &quot;specialPayments&quot;: {&#xd;
+                                    &quot;endDate&quot;: &quot;11/30/2020&quot;,&#xd;
+                                    &quot;effectiveDate&quot;: &quot;12/22/2013&quot;,&#xd;
+                                    &quot;mailingAddress&quot;: {&#xd;
+                                        &quot;city&quot;: &quot;Charleston&quot;,&#xd;
+                                        &quot;_nrpm&quot;: {&#xd;
+                                            &quot;id&quot;: 33&#xd;
+                                        },&#xd;
+                                        &quot;state&quot;: &quot;SC&quot;,&#xd;
+                                        &quot;country&quot;: &quot;United States&quot;,&#xd;
+                                        &quot;zipCode&quot;: &quot;12345+6789&quot;,&#xd;
+                                        &quot;address1&quot;: &quot;321 Special&quot;,&#xd;
+                                        &quot;address2&quot;: &quot;Suite 130&quot;&#xd;
+                                    }&#xd;
+                                },&#xd;
+                                &quot;storageFacility&quot;: {&#xd;
+                                    &quot;endDate&quot;: &quot;11/30/2020&quot;,&#xd;
+                                    &quot;effectiveDate&quot;: &quot;12/22/2013&quot;,&#xd;
+                                    &quot;mailingAddress&quot;: {&#xd;
+                                        &quot;city&quot;: &quot;Charleston&quot;,&#xd;
+                                        &quot;_nrpm&quot;: {&#xd;
+                                            &quot;id&quot;: 34&#xd;
+                                        },&#xd;
+                                        &quot;state&quot;: &quot;SC&quot;,&#xd;
+                                        &quot;country&quot;: &quot;United States&quot;,&#xd;
+                                        &quot;zipCode&quot;: &quot;12345+6789&quot;,&#xd;
+                                        &quot;address1&quot;: &quot;321 Storage&quot;,&#xd;
+                                        &quot;address2&quot;: &quot;Suite 130&quot;&#xd;
+                                    }&#xd;
+                                },&#xd;
+                                &quot;firstPatientDate&quot;: &quot;10/15/2019&quot;,&#xd;
+                                &quot;certificationNumber&quot;: &quot;146548&quot;,&#xd;
+                                &quot;storageFacilityUsed&quot;: &quot;Y&quot;&#xd;
+                            }&#xd;
+                        ]&#xd;
+                    }&#xd;
+                },&#xd;
+                &quot;OWNERSHIP_INTEREST_MANAGING_CONTROL&quot;: {&#xd;
+                    &quot;managers&quot;: [&#xd;
+                        {&#xd;
+                            &quot;id&quot;: &quot;4e3db00a-dfb4-4c00-8015-80c3be740504&quot;,&#xd;
+                            &quot;npi&quot;: &quot;9788557111&quot;,&#xd;
+                            &quot;ssn&quot;: &quot;987-12-3456&quot;,&#xd;
+                            &quot;name&quot;: {&#xd;
+                                &quot;last&quot;: &quot;Smith&quot;,&#xd;
+                                &quot;_nrpm&quot;: {&#xd;
+                                    &quot;id&quot;: 6&#xd;
+                                },&#xd;
+                                &quot;first&quot;: &quot;Michael&quot;,&#xd;
+                                &quot;suffix&quot;: &quot;MD&quot;,&#xd;
+                                &quot;middleInitial&quot;: &quot;W&quot;&#xd;
+                            },&#xd;
+                            &quot;ptan&quot;: &quot;47838&quot;,&#xd;
+                            &quot;type&quot;: &quot;Individual&quot;,&#xd;
+                            &quot;_nrpm&quot;: {&#xd;
+                                &quot;id&quot;: 2&#xd;
+                            },&#xd;
+                            &quot;legal&quot;: {&#xd;
+                                &quot;legalActions&quot;: [&#xd;
+                                    {&#xd;
+                                        &quot;id&quot;: &quot;061cb22e-30cf-4b7b-8c46-ad5ac13dfe87&quot;,&#xd;
+                                        &quot;_nrpm&quot;: {&#xd;
+                                            &quot;id&quot;: 11&#xd;
+                                        },&#xd;
+                                        &quot;actionBy&quot;: &quot;Long Arm of the Law&quot;,&#xd;
+                                        &quot;category&quot;: &quot;FELONY CONVICTION WITHIN 10 YEARS&quot;,&#xd;
+                                        &quot;actionDate&quot;: &quot;10/01/2018&quot;,&#xd;
+                                        &quot;resolution&quot;: &quot;Resolution of ALA&quot;,&#xd;
+                                        &quot;description&quot;: &quot;Felony Action Detail Information...&quot;,&#xd;
+                                        &quot;reportedDate&quot;: &quot;10/02/2018&quot;,&#xd;
+                                        &quot;effectiveDate&quot;: &quot;10/05/2018&quot;,&#xd;
+                                        &quot;expirationDate&quot;: &quot;10/25/2018&quot;&#xd;
+                                    },&#xd;
+                                    {&#xd;
+                                        &quot;id&quot;: &quot;a1276074-c0aa-4a19-8a89-fa8571f237e5&quot;,&#xd;
+                                        &quot;_nrpm&quot;: {&#xd;
+                                            &quot;id&quot;: 10&#xd;
+                                        },&#xd;
+                                        &quot;actionBy&quot;: &quot;Long Arm of the Law&quot;,&#xd;
+                                        &quot;category&quot;: &quot;MISDEMEANOR CONVICTION WITHIN 10 YEARS&quot;,&#xd;
+                                        &quot;actionDate&quot;: &quot;10/01/2018&quot;,&#xd;
+                                        &quot;resolution&quot;: &quot;Resolution of ALA&quot;,&#xd;
+                                        &quot;description&quot;: &quot;Action Detail Information...&quot;,&#xd;
+                                        &quot;reportedDate&quot;: &quot;10/02/2018&quot;,&#xd;
+                                        &quot;effectiveDate&quot;: &quot;10/05/2018&quot;,&#xd;
+                                        &quot;expirationDate&quot;: &quot;10/25/2018&quot;&#xd;
+                                    }&#xd;
+                                ],&#xd;
+                                &quot;adverseLegalActionImposed&quot;: &quot;Y&quot;&#xd;
+                            },&#xd;
+                            &quot;title&quot;: &quot;Sir&quot;,&#xd;
+                            &quot;birthDate&quot;: &quot;07/01/1970&quot;,&#xd;
+                            &quot;birthState&quot;: &quot;MD&quot;,&#xd;
+                            &quot;birthCountry&quot;: &quot;United States&quot;,&#xd;
+                            &quot;associationTypes&quot;: {&#xd;
+                                &quot;managingEmployee&quot;: {&#xd;
+                                    &quot;endDate&quot;: &quot;11/01/2030&quot;,&#xd;
+                                    &quot;effectiveDate&quot;: &quot;10/01/2018&quot;&#xd;
+                                },&#xd;
+                                &quot;isManagingEmployee&quot;: true&#xd;
+                            }&#xd;
+                        },&#xd;
+                        {&#xd;
+                            &quot;id&quot;: &quot;bcf1193f-4e12-4bb1-b223-69a9b6fae525&quot;,&#xd;
+                            &quot;npi&quot;: &quot;9788557111&quot;,&#xd;
+                            &quot;ssn&quot;: &quot;987-12-3456&quot;,&#xd;
+                            &quot;name&quot;: {&#xd;
+                                &quot;last&quot;: &quot;Smith&quot;,&#xd;
+                                &quot;_nrpm&quot;: {&#xd;
+                                    &quot;id&quot;: 6&#xd;
+                                },&#xd;
+                                &quot;first&quot;: &quot;Michael&quot;,&#xd;
+                                &quot;suffix&quot;: &quot;MD&quot;,&#xd;
+                                &quot;middleInitial&quot;: &quot;W&quot;&#xd;
+                            },&#xd;
+                            &quot;ptan&quot;: &quot;47838&quot;,&#xd;
+                            &quot;type&quot;: &quot;Individual&quot;,&#xd;
+                            &quot;_nrpm&quot;: {&#xd;
+                                &quot;id&quot;: 8&#xd;
+                            },&#xd;
+                            &quot;legal&quot;: {&#xd;
+                                &quot;legalActions&quot;: [&#xd;
+                                    {&#xd;
+                                        &quot;id&quot;: &quot;1a72dd43-f3c4-4721-93ce-af709e627386&quot;,&#xd;
+                                        &quot;_nrpm&quot;: {&#xd;
+                                            &quot;id&quot;: 11&#xd;
+                                        },&#xd;
+                                        &quot;actionBy&quot;: &quot;Long Arm of the Law&quot;,&#xd;
+                                        &quot;category&quot;: &quot;FELONY CONVICTION WITHIN 10 YEARS&quot;,&#xd;
+                                        &quot;actionDate&quot;: &quot;10/01/2018&quot;,&#xd;
+                                        &quot;resolution&quot;: &quot;Resolution of ALA&quot;,&#xd;
+                                        &quot;description&quot;: &quot;Felony Action Detail Information...&quot;,&#xd;
+                                        &quot;reportedDate&quot;: &quot;10/02/2018&quot;,&#xd;
+                                        &quot;effectiveDate&quot;: &quot;10/05/2018&quot;,&#xd;
+                                        &quot;expirationDate&quot;: &quot;10/25/2018&quot;&#xd;
+                                    },&#xd;
+                                    {&#xd;
+                                        &quot;id&quot;: &quot;4e052ee2-8b88-4f3b-9e27-6c52b581e3d5&quot;,&#xd;
+                                        &quot;_nrpm&quot;: {&#xd;
+                                            &quot;id&quot;: 10&#xd;
+                                        },&#xd;
+                                        &quot;actionBy&quot;: &quot;Long Arm of the Law&quot;,&#xd;
+                                        &quot;category&quot;: &quot;MISDEMEANOR CONVICTION WITHIN 10 YEARS&quot;,&#xd;
+                                        &quot;actionDate&quot;: &quot;10/01/2018&quot;,&#xd;
+                                        &quot;resolution&quot;: &quot;Resolution of ALA&quot;,&#xd;
+                                        &quot;description&quot;: &quot;Action Detail Information...&quot;,&#xd;
+                                        &quot;reportedDate&quot;: &quot;10/02/2018&quot;,&#xd;
+                                        &quot;effectiveDate&quot;: &quot;10/05/2018&quot;,&#xd;
+                                        &quot;expirationDate&quot;: &quot;10/25/2018&quot;&#xd;
+                                    }&#xd;
+                                ],&#xd;
+                                &quot;adverseLegalActionImposed&quot;: &quot;Y&quot;&#xd;
+                            },&#xd;
+                            &quot;title&quot;: &quot;Sir&quot;,&#xd;
+                            &quot;birthDate&quot;: &quot;07/01/1970&quot;,&#xd;
+                            &quot;birthState&quot;: &quot;MD&quot;,&#xd;
+                            &quot;birthCountry&quot;: &quot;United States&quot;,&#xd;
+                            &quot;associationTypes&quot;: {&#xd;
+                                &quot;managingEmployee&quot;: {&#xd;
+                                    &quot;endDate&quot;: &quot;11/01/2030&quot;,&#xd;
+                                    &quot;effectiveDate&quot;: &quot;10/01/2018&quot;&#xd;
+                                },&#xd;
+                                &quot;isManagingEmployee&quot;: true&#xd;
+                            }&#xd;
+                        }&#xd;
+                    ]&#xd;
+                },&#xd;
+                &quot;REASSIGNMENT_EMPLOYMENT_RELATIONSHIPS&quot;: {&#xd;
+                    &quot;entities&quot;: [&#xd;
+                        {&#xd;
+                            &quot;id&quot;: &quot;e6ac8965-2808-4161-b863-d68d8b3e7f68&quot;,&#xd;
+                            &quot;npi&quot;: &quot;1123456789&quot;,&#xd;
+                            &quot;tin&quot;: &quot;83-5069989&quot;,&#xd;
+                            &quot;name&quot;: &quot;Mary A Wilson&quot;,&#xd;
+                            &quot;type&quot;: &quot;INDIVIDUAL&quot;,&#xd;
+                            &quot;custom&quot;: {&#xd;
+                                &quot;billingLocations&quot;: [],&#xd;
+                                &quot;appointmentLocations&quot;: []&#xd;
+                            },&#xd;
+                            &quot;status&quot;: &quot;ACTIVE&quot;,&#xd;
+                            &quot;endDate&quot;: &quot;01/01/2025&quot;,&#xd;
+                            &quot;parStatus&quot;: &quot;Not Participating&quot;,&#xd;
+                            &quot;enrollments&quot;: [&#xd;
+                                {&#xd;
+                                    &quot;id&quot;: &quot;11&quot;,&#xd;
+                                    &quot;name&quot;: &quot;MD&quot;,&#xd;
+                                    &quot;ptans&quot;: [&#xd;
+                                        {&#xd;
+                                            &quot;id&quot;: &quot;97754&quot;,&#xd;
+                                            &quot;npis&quot;: [&#xd;
+                                                &quot;1762554492&quot;,&#xd;
+                                                &quot;1762554493&quot;&#xd;
+                                            ],&#xd;
+                                            &quot;billing&quot;: {&#xd;
+                                                &quot;locations&quot;: [&#xd;
+                                                    {&#xd;
+                                                        &quot;id&quot;: &quot;4c6e8f2a-990f-4504-bb51-5c0482771131&quot;,&#xd;
+                                                        &quot;city&quot;: &quot;Columbus&quot;,&#xd;
+                                                        &quot;name&quot;: &quot;Columbus PT&quot;,&#xd;
+                                                        &quot;state&quot;: &quot;MD&quot;,&#xd;
+                                                        &quot;zipCode&quot;: &quot;43004&quot;,&#xd;
+                                                        &quot;address1&quot;: &quot;1800 Columbia Drive&quot;&#xd;
+                                                    }&#xd;
+                                                ]&#xd;
+                                            },&#xd;
+                                            &quot;endDate&quot;: &quot;01/01/2025&quot;,&#xd;
+                                            &quot;selectedNpis&quot;: [],&#xd;
+                                            &quot;effectiveDate&quot;: &quot;01/01/2018&quot;&#xd;
+                                        }&#xd;
+                                    ],&#xd;
+                                    &quot;status&quot;: &quot;ACTIVE&quot;,&#xd;
+                                    &quot;selectedPtans&quot;: []&#xd;
+                                },&#xd;
+                                {&#xd;
+                                    &quot;id&quot;: &quot;12&quot;,&#xd;
+                                    &quot;name&quot;: &quot;DE&quot;,&#xd;
+                                    &quot;ptans&quot;: [&#xd;
+                                        {&#xd;
+                                            &quot;id&quot;: &quot;22794&quot;,&#xd;
+                                            &quot;npis&quot;: [&#xd;
+                                                &quot;1762554492&quot;,&#xd;
+                                                &quot;1762554493&quot;,&#xd;
+                                                &quot;1762554494&quot;&#xd;
+                                            ],&#xd;
+                                            &quot;billing&quot;: {&#xd;
+                                                &quot;locations&quot;: [&#xd;
+                                                    {&#xd;
+                                                        &quot;id&quot;: &quot;c7c11196-a84b-4995-b851-d12df8e90ed1&quot;,&#xd;
+                                                        &quot;city&quot;: &quot;Cincinnati&quot;,&#xd;
+                                                        &quot;name&quot;: &quot;Cincinnati PT&quot;,&#xd;
+                                                        &quot;state&quot;: &quot;DE&quot;,&#xd;
+                                                        &quot;zipCode&quot;: &quot;45215&quot;,&#xd;
+                                                        &quot;address1&quot;: &quot;100 100 Reds Drive&quot;&#xd;
+                                                    }&#xd;
+                                                ]&#xd;
+                                            },&#xd;
+                                            &quot;endDate&quot;: &quot;01/01/2025&quot;,&#xd;
+                                            &quot;selectedNpis&quot;: [],&#xd;
+                                            &quot;effectiveDate&quot;: &quot;01/01/2018&quot;&#xd;
+                                        }&#xd;
+                                    ],&#xd;
+                                    &quot;status&quot;: &quot;ACTIVE&quot;,&#xd;
+                                    &quot;selectedPtans&quot;: [&#xd;
+                                        &quot;22794&quot;&#xd;
+                                    ]&#xd;
+                                }&#xd;
+                            ],&#xd;
+                            &quot;effectiveDate&quot;: &quot;01/01/2018&quot;&#xd;
+                        }&#xd;
+                    ]&#xd;
+                }&#xd;
+            }&#xd;
+        }&#xd;
+    },&#xd;
+    &quot;location_summary&quot;: [&#xd;
+        {&#xd;
+            &quot;zipCodes&quot;: [&#xd;
+                &quot;19107&quot;&#xd;
+            ],&#xd;
+            &quot;state&quot;: &quot;AK&quot;&#xd;
+        }&#xd;
+    ],&#xd;
+    &quot;contact_information&quot;: [&#xd;
+        {&#xd;
+            &quot;zipCodes&quot;: [&#xd;
+                &quot;19107&quot;&#xd;
+            ],&#xd;
+            &quot;state&quot;: &quot;FL&quot;&#xd;
+        }&#xd;
+    ],&#xd;
+    &quot;reassignment_data&quot;: {&#xd;
+        &quot;entities&quot;: [&#xd;
+            {&#xd;
+                &quot;entity&quot;: &quot;e6ac8965-2808-4161-b863-d68d8b3e7f68&quot;,&#xd;
+                &quot;enrollments&quot;: [&#xd;
+                    {&#xd;
+                        &quot;ptans&quot;: [&#xd;
+                            {&#xd;
+                                &quot;ptan&quot;: &quot;22794&quot;,&#xd;
+                                &quot;npis&quot;: [],&#xd;
+                                &quot;states&quot;: [&#xd;
+                                    {&#xd;
+                                        &quot;zipCodes&quot;: [&#xd;
+                                            &quot;45215&quot;&#xd;
+                                        ],&#xd;
+                                        &quot;state&quot;: &quot;DE&quot;&#xd;
+                                    }&#xd;
+                                ]&#xd;
+                            }&#xd;
+                        ],&#xd;
+                        &quot;enrollment&quot;: &quot;12&quot;&#xd;
+                    }&#xd;
+                ]&#xd;
+            }&#xd;
+        ]&#xd;
+    }&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${TESTING_URL}/api/application</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/applications</stringProp>
+          <stringProp name="HTTPSampler.method">PUT</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Status Code Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">1</intProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="casemgmt_855B_SL_Valid_Group_Yes-Application_submission" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+	&quot;event_id&quot;: &quot;01d1fa63-7120-426d-9dac-d4cafac62d0f&quot;,&#xd;
+	&quot;application_event_type&quot;: &quot;SUBMITTED&quot;,&#xd;
+	&quot;application_metadata&quot;: {&#xd;
+		&quot;application_type&quot;: &quot;855I&quot;&#xd;
+	},&#xd;
+	&quot;event_timestamp&quot;: 1538154220439,&#xd;
+	&quot;entity_id&quot;: &quot;${entityId}&quot;,&#xd;
+	&quot;application_id&quot;: &quot;${applicationId}&quot;,&#xd;
+	&quot;application_data&quot;: {&#xd;
+		&quot;personal&quot;: {&#xd;
+			&quot;ssn&quot;: &quot;123456789&quot;,&#xd;
+			&quot;name&quot;: {&#xd;
+				&quot;last&quot;: &quot;Trade&quot;,&#xd;
+				&quot;first&quot;: &quot;Jack&quot;,&#xd;
+				&quot;middleInitial&quot;: &quot;O&quot;&#xd;
+			},&#xd;
+			&quot;gender&quot;: &quot;MALE&quot;,&#xd;
+			&quot;birthDate&quot;: &quot;09/09/1978&quot;,&#xd;
+			&quot;npiNumber&quot;: &quot;123456789&quot;,&#xd;
+			&quot;birthState&quot;: &quot;Georgia&quot;,&#xd;
+			&quot;ptanNumber&quot;: &quot;1234567890&quot;,&#xd;
+			&quot;birthCountry&quot;: &quot;United States&quot;,&#xd;
+			&quot;otherNamesProvided&quot;: &quot;N&quot;,&#xd;
+			&quot;acceptingNewPatients&quot;: &quot;N&quot;,&#xd;
+			&quot;medicalProfessionalSchool&quot;: &quot;123456789&quot;&#xd;
+		},&#xd;
+		&quot;residency&quot;: {&#xd;
+			&quot;type&quot;: &quot;FELLOWSHIP&quot;,&#xd;
+			&quot;facility&quot;: {&#xd;
+				&quot;address&quot;: {&#xd;
+					&quot;city&quot;: &quot;Atlanta&quot;,&#xd;
+					&quot;state&quot;: &quot;Georgia&quot;,&#xd;
+					&quot;country&quot;: &quot;United States&quot;,&#xd;
+					&quot;zipCode&quot;: &quot;89098&quot;,&#xd;
+					&quot;address1&quot;: &quot;123, Test lane&quot;&#xd;
+				}&#xd;
+			}&#xd;
+		},&#xd;
+		&quot;practiceLocation&quot;: {&#xd;
+            &quot;locations&quot;: [&#xd;
+                {&#xd;
+                    &quot;id&quot;: &quot;b014d051-8832-4af0-bf82-1f60d7709f40&quot;,&#xd;
+                    &quot;ptannpi&quot;: [&#xd;
+                        {&#xd;
+                            &quot;id&quot;: &quot;614cb615-e940-4a8d-a72c-464bf471464b&quot;&#xd;
+                        }&#xd;
+                    ],&#xd;
+                    &quot;mailingAddress&quot;: {&#xd;
+                        &quot;city&quot;: &quot;Augusta&quot;,&#xd;
+                        &quot;state&quot;: &quot;ME&quot;,&#xd;
+                        &quot;country&quot;: &quot;United States&quot;,&#xd;
+                        &quot;zipCode&quot;: &quot;89089&quot;,&#xd;
+                        &quot;address1&quot;: &quot;100, Kings Lane&quot;&#xd;
+                    }&#xd;
+                },&#xd;
+                {&#xd;
+                    &quot;id&quot;: &quot;13a953e6-ae2b-460d-8aa7-645e469e8b8d&quot;,&#xd;
+                    &quot;ptannpi&quot;: [&#xd;
+                        {&#xd;
+                            &quot;id&quot;: &quot;6b95e4f6-39a7-4fb8-818e-b5e8eec1b281&quot;&#xd;
+                        }&#xd;
+                    ],&#xd;
+                    &quot;mailingAddress&quot;: {&#xd;
+                        &quot;city&quot;: &quot;Detroit&quot;,&#xd;
+                        &quot;state&quot;: &quot;NH&quot;,&#xd;
+                        &quot;country&quot;: &quot;United States&quot;,&#xd;
+                        &quot;zipCode&quot;: &quot;89089&quot;,&#xd;
+                        &quot;address1&quot;: &quot;100, Kings Lane&quot;&#xd;
+                    }&#xd;
+                },&#xd;
+                {&#xd;
+                    &quot;id&quot;: &quot;d231d120-6f80-4c17-bc02-a2708cc5ba2f&quot;,&#xd;
+                    &quot;ptannpi&quot;: [&#xd;
+                        {&#xd;
+                            &quot;id&quot;: &quot;02db8007-48db-49d6-a340-8e3edec5057c&quot;&#xd;
+                        }&#xd;
+                    ],&#xd;
+                    &quot;mailingAddress&quot;: {&#xd;
+                        &quot;city&quot;: &quot;Baltimore&quot;,&#xd;
+                        &quot;state&quot;: &quot;MD&quot;,&#xd;
+                        &quot;country&quot;: &quot;United States&quot;,&#xd;
+                        &quot;zipCode&quot;: &quot;89089&quot;,&#xd;
+                        &quot;address1&quot;: &quot;100, Kings Lane&quot;&#xd;
+                    }&#xd;
+                },&#xd;
+                {&#xd;
+                    &quot;id&quot;: &quot;208922df-56c1-468a-b605-3c464ecedc6f&quot;,&#xd;
+                    &quot;ptannpi&quot;: [&#xd;
+                        {&#xd;
+                            &quot;id&quot;: &quot;aa3a8ba6-861a-4d58-8519-5f454244c313&quot;&#xd;
+                        }&#xd;
+                    ],&#xd;
+                    &quot;mailingAddress&quot;: {&#xd;
+                        &quot;city&quot;: &quot;Fairfield&quot;,&#xd;
+                        &quot;state&quot;: &quot;KY&quot;,&#xd;
+                        &quot;country&quot;: &quot;United States&quot;,&#xd;
+                        &quot;zipCode&quot;: &quot;99090&quot;,&#xd;
+                        &quot;address1&quot;: &quot;100, Kings Lane&quot;&#xd;
+                    }&#xd;
+                },&#xd;
+                {&#xd;
+                    &quot;id&quot;: &quot;3aa10ac5-16b7-453d-af49-26ec8c237fce&quot;,&#xd;
+                    &quot;ptannpi&quot;: [&#xd;
+                        {&#xd;
+                            &quot;id&quot;: &quot;e690fb83-d46d-4b56-88e9-bc2cc4be09e4&quot;&#xd;
+                        }&#xd;
+                    ],&#xd;
+                    &quot;mailingAddress&quot;: {&#xd;
+                        &quot;city&quot;: &quot;Montgomery&quot;,&#xd;
+                        &quot;state&quot;: &quot;AL&quot;,&#xd;
+                        &quot;country&quot;: &quot;United States&quot;,&#xd;
+                        &quot;zipCode&quot;: &quot;89089&quot;,&#xd;
+                        &quot;address1&quot;: &quot;100, Kings Lane&quot;&#xd;
+                    }&#xd;
+                },&#xd;
+                {&#xd;
+                    &quot;id&quot;: &quot;97ab913d-e4a3-4720-8209-09f7131d50de&quot;,&#xd;
+                    &quot;ptannpi&quot;: [&#xd;
+                        {&#xd;
+                            &quot;id&quot;: &quot;149872a0-5f23-4f89-ac50-3d390e82bf9e&quot;&#xd;
+                        }&#xd;
+                    ],&#xd;
+                    &quot;mailingAddress&quot;: {&#xd;
+                        &quot;city&quot;: &quot;Miami&quot;,&#xd;
+                        &quot;state&quot;: &quot;FL&quot;,&#xd;
+                        &quot;country&quot;: &quot;United States&quot;,&#xd;
+                        &quot;zipCode&quot;: &quot;89089&quot;,&#xd;
+                        &quot;address1&quot;: &quot;100, Kings Lane&quot;&#xd;
+                    }&#xd;
+                },&#xd;
+                {&#xd;
+                    &quot;id&quot;: &quot;61345afa-98ae-4776-88fd-51e3f1c168d8&quot;,&#xd;
+                    &quot;ptannpi&quot;: [&#xd;
+                        {&#xd;
+                            &quot;id&quot;: &quot;03a029c6-598f-4fdc-b73f-6ca0549c803b&quot;&#xd;
+                        }&#xd;
+                    ],&#xd;
+                    &quot;mailingAddress&quot;: {&#xd;
+                        &quot;city&quot;: &quot;Houston&quot;,&#xd;
+                        &quot;state&quot;: &quot;TX&quot;,&#xd;
+                        &quot;country&quot;: &quot;United States&quot;,&#xd;
+                        &quot;zipCode&quot;: &quot;89089&quot;,&#xd;
+                        &quot;address1&quot;: &quot;100, Kings Lane&quot;&#xd;
+                    }&#xd;
+                }&#xd;
+                    ]&#xd;
+		},&#xd;
+		&quot;licenseAndCertification&quot;: {&#xd;
+			&quot;dea&quot;: {&#xd;
+				&quot;deaNumbers&quot;: [{}]&#xd;
+			},&#xd;
+			&quot;license&quot;: {&#xd;
+				&quot;licenseNumbers&quot;: [{}]&#xd;
+			},&#xd;
+			&quot;certification&quot;: {&#xd;
+				&quot;certificationNumbers&quot;: [{}]&#xd;
+			}&#xd;
+		}&#xd;
+	}&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${TESTING_URL}/api/application</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">application-events</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Status Code Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">1</intProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">event_id</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.event_id</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+            <stringProp name="JSONPostProcessor.defaultValues">No_Default</stringProp>
+            <stringProp name="Scope.variable">trackingid</stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="casemgmt_855B_SL_Valid_Group_Yes-afterSubmission_get" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${TESTING_URL}/api/case-management</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/casemanagement/findByApplicationId/${applicationId}</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
+            <stringProp name="ConstantTimer.delay">10000</stringProp>
+          </ConstantTimer>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Status Code Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">1</intProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="JSON Assertion" enabled="true">
+            <stringProp name="JSON_PATH">$.currentEventState..name</stringProp>
+            <stringProp name="EXPECTED_VALUE">ROUTED</stringProp>
+            <boolProp name="JSONVALIDATION">true</boolProp>
+            <boolProp name="EXPECT_NULL">false</boolProp>
+            <boolProp name="INVERT">false</boolProp>
+            <boolProp name="ISREGEX">false</boolProp>
+          </JSONPathAssertion>
+          <hashTree/>
+          <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="JSON Assertion" enabled="true">
+            <stringProp name="JSON_PATH">$.pecosCaseRouting..contractorName</stringProp>
+            <stringProp name="EXPECTED_VALUE">[&quot;Novitas Solutions&quot;]</stringProp>
+            <boolProp name="JSONVALIDATION">true</boolProp>
+            <boolProp name="EXPECT_NULL">false</boolProp>
+            <boolProp name="INVERT">false</boolProp>
+            <boolProp name="ISREGEX">false</boolProp>
+          </JSONPathAssertion>
+          <hashTree/>
+        </hashTree>
+        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="true">
+          <boolProp name="displayJMeterProperties">true</boolProp>
+          <boolProp name="displayJMeterVariables">true</boolProp>
+          <boolProp name="displaySystemProperties">false</boolProp>
+        </DebugSampler>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
